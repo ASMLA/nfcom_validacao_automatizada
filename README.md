@@ -1,22 +1,23 @@
-# 📘 Projeto NF Claro 2025
+
+# 📘 Projeto NFCOM - NOVA REFORMA TRIBUTÁRIA
 
 ## 📌 Visão Geral
 
-O **Projeto NF Claro 2025** é um validador fiscal completo para **Notas Fiscais de Comunicação (NFCom)**, desenvolvido para validar regras da **Reforma Tributária (CBS / IBS / IBSUF / IBSMUN / ISS)** conforme especificações oficiais do projeto **NF Claro 2025**.
+O **Projeto NFCOM Reforma Tributária** é um validador fiscal completo para **Notas Fiscais de Comunicação (NFCom)**, desenvolvido para validar regras da **Reforma Tributária (CBS / IBS / IBSUF / IBSMUN / ISS)** conforme especificações oficiais do projeto **[NFCOM](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-consumo/orientacoes-2026)**.
 
 O sistema valida **nota individual** ou **lotes de notas**, gerando:
 
-* 📄 Relatórios HTML detalhados
-* 📝 Auditoria TXT completa (regra a regra)
-* 📊 Consolidado CSV
-* 📈 Consolidado XLSX
+- 📄 **Relatórios HTML detalhados**
+- 📝 **Auditoria TXT completa (regra a regra)**
+- 📊 **Consolidado CSV**
+- 📈 **Consolidado XLSX**
 
 Todos os cenários fiscais estão cobertos:
 
-* ✅ TELCO FUST
-* ✅ TELCO NÃO FUST
-* ✅ NÃO TELCO
-* ✅ NÃO TRIBUTADO
+- ✅ TELCO FUST
+- ✅ TELCO NÃO FUST
+- ✅ NÃO TELCO
+- ✅ NÃO TRIBUTADO
 
 ---
 
@@ -42,86 +43,137 @@ pip install -r requirements.txt
 
 Dependências principais:
 
-* pandas
-* openpyxl
-* decimal
+- pandas
+- openpyxl
+- decimal
 
 ---
 
-## 🗂️ Estrutura Atual do Projeto (CORRIGIDA)
+## 🗂️ Estrutura Atual do Projeto
 
 ```text
 nf_claro_2025/
 │
-├── main.py                     # CLI principal (unitário e lote)
-├── requirements.txt
-├── README.md
+├── main.py
 │
-├── data/                        # ENTRADAS
+├── reports/
+│   ├── single/
+│   │   └── (saídas de execução individual)
 │   │
+│   └── lote/
+│       └── (saídas de execução em lote + consolidados)
+│
+├── data/
 │   ├── 001_TELCO_FUST.json
-│   ├── 002_TELCO_N_FUST.json
-│   ├── 003_N_TELCO.json
-│   ├── 004_N_TRIBUTADO.json
-│   │
-│   ├── lote/                   # 🔴 PROCESSAMENTO EM LOTE
+│   ├── lote/
 │   │   ├── 001_TELCO_FUST.json
-│   │   ├── 002_TELCO_N_FUST.json
-│   │   ├── 003_N_TELCO.json
-│   │   └── 004_N_TRIBUTADO.json
+│   │   ├── 002_TELCO_NAO_FUST.json
+│   │   └── ...
 │   │
 │   ├── Tabela_cClass.xlsx
-│   └── tabela_referencia_NTELCO.xlsx
+│   └── Tabela_NTELCO.xlsx
 │
-├── reports/                     # SAÍDA AUTOMÁTICA
-│   └── YYYY-MM-DD_HH-MM-SS/
-│       │
-│       ├── NF_219_001_TELCO_FUST_TELCO_FUST/
-│       │   ├── relatorio.html
-│       │   └── auditoria.txt
-│       │
-│       ├── NF_3534_002_TELCO_N_FUST_TELCO_N_FUST/
-│       ├── NF_4388_003_N_TELCO_NAO_TELCO/
-│       │
-│       ├── consolidado.csv
-│       └── consolidado.xlsx
+├── nf_claro_2025/
+│   │
+│   ├── batch_processor.py
+│   ├── invoice_loader.py
+│   ├── classification.py
+│   │
+│   ├── config.py
+│   │
+│   ├── validator/
+│   │   ├── __init__.py
+│   │   └── validator.py
+│   │
+│   ├── rules/
+│   │   ├── ct003_fixos.py
+│   │   ├── ct004_cst.py
+│   │   ├── ct005_cclass.py
+│   │   ├── ct006_bc.py
+│   │   ├── ct007_ibuf.py
+│   │   ├── ct008_ibs.py
+│   │   ├── ct009_ibsmun.py
+│   │   ├── ct010_cbs.py
+│   │   ├── ct011_tot_bc.py
+│   │   ├── ct012_tot_ibuf.py
+│   │   ├── ct013_tot_ibsmun.py
+│   │   ├── ct014_tot_ibs.py
+│   │   └── ct015_tot_cbs.py
+│   │
+│   ├── reporting/
+│   │   ├── html_reporter.py
+│   │   ├── audit_reporter.py
+│   │   ├── rule_descriptions.py
+│   │   └── __init__.py
+│   │
+│   └── __init__.py
 │
-└── nf_claro_2025/
-    ├── __init__.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+
+📂 ESTRUTURA DE SAÍDA (REPORTS)
+▶ Execução SINGLE
+reports/
+└── single/
+    └── NF_<NUMERO>_<ARQUIVO>_<CATEGORIA>/
+        ├── relatorio.html
+        └── auditoria.txt
+
+▶ Execução LOTE
+reports/
+└── lote/
+    ├── NF_<NUMERO>_<ARQUIVO>_<CATEGORIA>/
+    │   ├── relatorio.html
+    │   └── auditoria.txt
     │
-    ├── config.py               # Configura caminhos e parâmetros
-    ├── invoice_loader.py       # Leitura e normalização do JSON
-    ├── classification.py       # Classificação fiscal (TELCO / NÃO TELCO / etc)
+    ├── NF_<NUMERO>_<ARQUIVO>_<CATEGORIA>/
+    │   ├── relatorio.html
+    │   └── auditoria.txt
     │
-    ├── validator/
-    │   ├── __init__.py
-    │   └── validator.py        # Orquestrador CT003–CT015
-    │
-    ├── rules/                  # Regras fiscais
-    │   ├── ct003_fixos.py
-    │   ├── ct004_cst.py
-    │   ├── ct005_cclass.py
-    │   ├── ct006_bc.py
-    │   ├── ct007_ibuf.py
-    │   ├── ct008_ibs.py
-    │   ├── ct009_ibsmun.py
-    │   ├── ct010_cbs.py
-    │   ├── ct011_tot_bc.py
-    │   ├── ct012_tot_ibuf.py
-    │   ├── ct013_tot_ibsmun.py
-    │   ├── ct014_tot_ibs.py
-    │   └── ct015_tot_cbs.py
-    │
-    ├── reporting/
-    │   ├── audit_reporter.py   # Relatório TXT (auditoria)
-    │   └── html_reporter.py    # Relatório HTML
-    │
-    └── batch_processor.py      # 🔴 PROCESSADOR DE LOTE
+    ├── consolidado.csv
+    └── consolidado.xlsx        
 ```
 
 ---
 
 ## 🧠 Arquitetura e Lógica
+
+### ✅ Responsabilidades bem separadas
+
+#### `main.py`
+- Interface de linha de comando (CLI)
+- Decide o modo de execução:
+  - **Single** (arquivo único)
+  - **Lote** (diretório com múltiplos arquivos)
+- Define as **pastas de saída** dos relatórios (`reports/single` e `reports/lote`)
+
+---
+
+#### `BatchProcessor`
+- Orquestra a execução do processamento
+- Coordena fluxo **single** e **lote**
+- Gera relatórios (HTML e auditoria)
+- Mantém **feedback imediato no console** (OK / DIVERGENTE)
+
+---
+
+#### `Validator`
+- Executa as regras fiscais **CT003 a CT015**
+- Centraliza a lógica de validação
+- Gera:
+  - `summary` (resultado estruturado)
+  - `issues` (lista de divergências)
+
+---
+
+#### `HTMLReporter`
+- Responsável exclusivamente pelo **layout do relatório**
+- Mantém:
+  - Separação por **ITEM**
+  - Nomes amigáveis dos cenários (CT)
+  - Destaque visual de **OK / ERRO**
+- Aplica cores e organização visual sem impactar regras ou cálculos
 
 ### 🔹 Classificação Fiscal
 
@@ -150,7 +202,7 @@ nf_claro_2025/
 ### 🔹 Nota Única
 
 ```bash
-python main.py data\001_TELCO_FUST.json --html --audit
+python main.py data_TELCO_FUST.json --html --audit
 ```
 
 ### 🔹 Lote de Notas
@@ -193,3 +245,17 @@ Projeto desenvolvido e validado por **André Leite**.
 ## 📌 Observação Final
 
 Este README reflete **exatamente** o estado atual do código e da estrutura do projeto.
+
+---
+
+### ✅ Links de Navegação (em formato de índice)
+
+- [Visão Geral](#-visão-geral)
+- [Pré‑requisitos](#-pré‑requisitos)
+- [Estrutura Atual do Projeto](#️-estrutura-atual-do-projeto)
+- [Arquitetura e Lógica](#️-arquitetura-e-lógica)
+- [Execução](#️-execução)
+- [Saídas Geradas](#📄-saídas-geradas)
+- [Status do Projeto](#🏁-status-do-projeto)
+- [Autor](#👤-autor)
+- [Observação Final](#📌-observação-final)
