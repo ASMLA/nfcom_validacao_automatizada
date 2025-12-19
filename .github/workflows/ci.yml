@@ -1,0 +1,23 @@
+name: NF Claro – CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install deps
+      run: pip install -r requirements.txt
+
+    - name: Run sample test
+      run: python main.py data/exemplo_nf.json --html out.html --audit out.txt

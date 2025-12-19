@@ -1,0 +1,34 @@
+{
+  "ITENS": [
+    {
+      "NUM_SEQ_ITEM": 1,
+      "IND_CLASSIF_PRODUTO_SERVICO": "1010101",
+      "VLR_TOT_ITEM": 25.0,
+      "VLR_TRIBUTO": 2.31,
+      "VLR_FCP": 0.0,
+      "IMPOSTO_REFORMA": {
+        "IMPOSTO": [],
+        "VLR_BC_TRIBUTO": 22.69,
+        "TRIBUTO_IBSUF": {
+          "PCT_ALIQUOTA_IBSUF": 0.001,
+          "VLR_TRIBUTO_IBSUF": 0.02
+        },
+        "TRIBUTO_IBS_MUNICIPAL": {
+          "PCT_ALIQUOTA_IBSMUN": 0.009,
+          "VLR_TRIBUTO_IBSMUN": 0.2
+        },
+        "TRIBUTO_CBS": {
+          "PCT_ALIQUOTA_CBS": 0.04,
+          "VLR_TRIBUTO_CBS": 0.91
+        },
+        "VLR_TRIBUTO_IBS": 0.22
+      }
+    }
+  ],
+  "IMPOSTO_REFORMA_TOTAIS": {
+    "VLR_TOT_BC_IBS_CBS": 22.69,
+    "VLR_TOT_IBSUF": 0.02,
+    "VLR_TOT_IBS": 0.22,
+    "VLR_TOT_CBS": 0.91
+  }
+}

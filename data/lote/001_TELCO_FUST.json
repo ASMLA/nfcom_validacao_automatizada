@@ -1,0 +1,320 @@
+{
+  "_id": {
+    "$oid": "69303f67c26dc178a301a0e7"
+  },
+  "CONTROLE_FATURA": {
+    "DAT_USO_FIM": "2025-05-09",
+    "DAT_ANO_MES_REFER_FAT": "202505",
+    "DSC_COD_BARRA": "846400000002405000060039104017427253202505240004",
+    "COD_AUTORIZ_DEBITO_CC": "10216814",
+    "DAT_USO_INICIO": "2025-04-09",
+    "DAT_VENCTO_FAT": "2025-05-24"
+  },
+  "COD_FINALIDADE_NF": "0",
+  "DAT_GRAV_IDMC": "2025-09-15T15:24:30",
+  "NUM_MODELO_NFCOM": 62,
+  "COD_MUN_FG": "3304557",
+  "DADOS_ASSINANTE": {
+    "NUM_CONTRATO_ASSINANTE": "10216814",
+    "COD_TIPO_ASSINANTE": "3",
+    "COD_UNICO_CLIENTE": "10216814",
+    "DAT_INICIO_CONTRATO": "1999-12-19",
+    "NUM_TERM_PRI_CLI": "2125777896",
+    "COD_TIPO_SERVICO": "1",
+    "COD_UF_HABILIT_TERMINAL": 33
+  },
+  "COD_TIPO_FATURAMENTO_NF": "0",
+  "NUM_ALEATORIO_CHAVE": 1111111,
+  "NUM_SITE": "0",
+  "COD_UF_EMISSAO": "33",
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "NUM_SERIE_NF": "051",
+  "ENDERECO": [
+    {
+      "COD_MUNICIPIO_IBGE": "3304557",
+      "NUM_LOGRAD": "42",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "21218188",
+      "DSC_LOGRAD": "R Mena Barreto",
+      "DSC_BAIRRO": "Botafogo",
+      "NOM_MUNICIPIO_IBGE": "Rio de Janeiro",
+      "IND_TIPO_ENDERECO": "1",
+      "NOM_SGL_UF_IBGE": "RJ",
+      "DSC_EMAIL": "hsilv@embratel.com.br",
+      "COD_CEP": "22271100",
+      "COD_DDD_TELEFONE_PRINC": "21"
+    },
+    {
+      "COD_MUNICIPIO_IBGE": "3304557",
+      "DSC_COMPL_LOGRAD": "AP 301",
+      "NUM_LOGRAD": "678",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "25777896",
+      "DSC_LOGRAD": "R CARVALHO ALVIM",
+      "DSC_BAIRRO": "ANDARAI",
+      "NOM_MUNICIPIO_IBGE": "RIO DE JANEIRO",
+      "IND_TIPO_ENDERECO": "2",
+      "NOM_SGL_UF_IBGE": "RJ",
+      "COD_CEP": "20510095",
+      "COD_DDD_TELEFONE_PRINC": "21"
+    },
+    {
+      "COD_MUNICIPIO_IBGE": "3304557",
+      "DSC_COMPL_LOGRAD": "AP 301",
+      "NUM_LOGRAD": "678",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "25777896",
+      "DSC_LOGRAD": "R CARVALHO ALVIM",
+      "DSC_BAIRRO": "ANDARAI",
+      "NOM_MUNICIPIO_IBGE": "RIO DE JANEIRO",
+      "IND_TIPO_ENDERECO": "3",
+      "NOM_SGL_UF_IBGE": "RJ",
+      "COD_CEP": "20510095",
+      "COD_DDD_TELEFONE_PRINC": "21"
+    }
+  ],
+  "COD_DV_CHV_NFCOM": "1",
+  "INF_DESTINATARIO": {
+    "NUM_CPF_CLI": "48663085753",
+    "IND_IE_CLIENTE": 9,
+    "DSC_NOME_CLIENTE": "ROBERTO MEIRELLES DE ARAUJO"
+  },
+  "DAT_EMISSAO_FAT_NF": "2025-09-15T12:23:06-03:00",
+  "CAMPOS_ADIC": {
+    "NUM_INTERNO_FAT": "0310401742725",
+    "COD_ESTAB_EMIT": "2125",
+    "QTD_ENVIO_NFCOM": 1,
+    "DSC_CICLO_FAT": "M25"
+  },
+  "DSC_VERSAO": "100",
+  "VERSAO": 1.13,
+  "ITEM": [
+    {
+      "NUM_ITEM": "0001",
+      "IMPOSTO": [
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "0.65"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "09",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "30.78"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.20"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "0.50"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "12",
+          "IND_CLASSIF_TRIBUT": "99",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "18.82"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.09"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "20.00"
+          },
+          "VLR_FCP": {
+            "$numberDecimal": "1.62"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "01",
+          "IND_CLASSIF_TRIBUT": "00",
+          "VLR_ALIQ_FCP": {
+            "$numberDecimal": "4.00"
+          },
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "40.50"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "8.10"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "1.00"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "11",
+          "IND_CLASSIF_TRIBUT": "99",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "18.82"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.19"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "3.00"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "10",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "30.78"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.92"
+          }
+        }
+      ],
+      "COD_CFOP": "5307",
+      "IND_CLASSIF_PRODUTO_SERVICO": "0100101",
+      "COD_UNID_BASICA_MEDIDA": 4,
+      "DSC_PRODUTO_SERVICO": "Promoção Ilimitado Mais",
+      "VLR_UNITARIO_ITEM": {
+        "$numberDecimal": "40.50"
+      },
+      "VLR_OUTRA_DESPESA": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_DESCONTO": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_TOT_ITEM": {
+        "$numberDecimal": "40.50"
+      },
+      "COD_PRODUTO_SERVICO": "PromoIlMRC",
+      "QTD_FATURADA": {
+        "$numberDecimal": "1"
+      },
+      "IMPOSTO_REFORMA": {
+        "COD_CST": "000",
+        "COD_CLASSIF_TRIB": "000002",
+        "VLR_BC_TRIBUTO": {
+          "$numberDecimal": "18.82"
+        },
+        "TRIBUTO_IBSUF": {
+          "PCT_ALIQUOTA_IBSUF": {
+            "$numberDecimal": "0.10"
+          },
+          "VLR_TRIBUTO_IBSUF": {
+            "$numberDecimal": "0.02"
+          }
+        },
+        "TRIBUTO_IBS_MUNICIPAL": {
+          "PCT_ALIQUOTA_IBSMUN": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBS": {
+            "$numberDecimal": "0.02"
+          },
+          "VLR_TRIBUTO_IBSMUN": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_CBS": {
+          "PCT_ALIQUOTA_CBS": {
+            "$numberDecimal": "0.90"
+          },
+          "VLR_TRIBUTO_CBS": {
+            "$numberDecimal": "0.17"
+          }
+        }
+      }
+    }
+  ],
+  "NUM_NFCOM": 219,
+  "COD_IDENT_DOC_COBRANCA": "0310401742725",
+  "INF_EMITENTE": {
+    "DSC_RAZAO_SOCIAL_EMIT": "Claro",
+    "COD_REG_TRIB_EMIT": "3",
+    "COD_IE_EMIT": "78002840",
+    "NUM_CNPJ_EMIT": "40432544006269"
+  },
+  "TOTAL_NFCOM": {
+    "VLR_TOT_FUNTTEL": {
+      "$numberDecimal": "0.09"
+    },
+    "VLR_TOT_FUST": {
+      "$numberDecimal": "0.19"
+    },
+    "VLR_TOT_RET_PIS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ICMS": {
+      "$numberDecimal": "8.10"
+    },
+    "VLR_TOT_RET_IRRF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_NFCOM": {
+      "$numberDecimal": "40.50"
+    },
+    "VLR_TOT_FCP": {
+      "$numberDecimal": "1.62"
+    },
+    "VLR_TOT_OUTROS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DESCONTO": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_BC": {
+      "$numberDecimal": "40.50"
+    },
+    "VLR_TOT_PIS": {
+      "$numberDecimal": "0.20"
+    },
+    "VLR_TOT_ICMS_DESON": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_RET_COFINS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_COFINS": {
+      "$numberDecimal": "0.92"
+    },
+    "VLR_TOT_ITEM": {
+      "$numberDecimal": "40.50"
+    },
+    "VLR_TOT_RET_CSLL": {
+      "$numberDecimal": "0.00"
+    }
+  },
+  "DSC_SGL_EMPRESA": "CLO",
+  "DAT_GRAV_NF_FATURADOR": "2025-09-15 15:23:06",
+  "AUTORIZ_XML": [
+    {
+      "COD_TIPO_DOCUMENTO_AUT_XML": "1",
+      "NUM_DOCUMENTO_AUT_XML": "48663085753"
+    }
+  ],
+  "COD_TIPO_AMBIENTE": 2,
+  "TRANSACTION_ID": "2025021220250765TELCOFUST",
+  "DSC_SGL_UF_EMISSAO": "RJ",
+  "NOM_SISTEMA_ORIGEM": "ARBOR_CUST1",
+  "COD_FORMA_EMISSAO_NFCOM": 1,
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-15T15:27:22.622",
+  "TOTAL_REFORMA": {
+    "VLR_TOT_BC_IBS_CBS": "18.82",
+    "VLR_TOT_DIF_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSUF": "0.02",
+    "VLR_TOT_DIF_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSMUN": "0.00",
+    "VLR_TOT_IBS": "0.02",
+    "VLR_TOT_DIF_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_CBS": "0.17"
+  }
+}

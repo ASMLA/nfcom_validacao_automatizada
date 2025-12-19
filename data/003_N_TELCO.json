@@ -1,0 +1,342 @@
+{
+  "_id": {
+    "$oid": "69389888c26dc178a301a0f3"
+  },
+  "CONTROLE_FATURA": {
+    "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix0136a66dbf39-5712-4ba8-b506-ce5ac189fa505204000053039865406304.625802BR5909Claro S/A6009Sao Paulo6229052517678000001720617194636616304725B",
+    "DAT_USO_FIM": "2025-02-01",
+    "DAT_ANO_MES_REFER_FAT": "202502",
+    "DSC_COD_BARRA": "848200000034046201632029502281767830661004141881",
+    "DAT_USO_INICIO": "2025-01-02",
+    "DAT_VENCTO_FAT": "2025-02-28"
+  },
+  "COD_FINALIDADE_NF": "0",
+  "DAT_GRAV_IDMC": "2025-10-17T16:03:36",
+  "NUM_MODELO_NFCOM": 62,
+  "COD_MUN_FG": "4202404",
+  "DADOS_ASSINANTE": {
+    "NUM_CONTRATO_ASSINANTE": "154357931",
+    "COD_TIPO_ASSINANTE": "99",
+    "COD_UNICO_CLIENTE": "MM176783661",
+    "DAT_INICIO_CONTRATO": "2024-10-10",
+    "NUM_TERM_PRI_CLI": "47991391331",
+    "COD_TIPO_SERVICO": "7",
+    "COD_UF_HABILIT_TERMINAL": 42
+  },
+  "COD_TIPO_FATURAMENTO_NF": "0",
+  "TERMINAL_ADICIONAL": [
+    {
+      "COD_UF_TERM_ADICIONAL": 42,
+      "NUM_TERMINAL_ADICIONAL": "47991879070"
+    },
+    {
+      "COD_UF_TERM_ADICIONAL": 42,
+      "NUM_TERMINAL_ADICIONAL": "47999658807"
+    },
+    {
+      "COD_UF_TERM_ADICIONAL": 42,
+      "NUM_TERMINAL_ADICIONAL": "47999351177"
+    },
+    {
+      "COD_UF_TERM_ADICIONAL": 42,
+      "NUM_TERMINAL_ADICIONAL": "47999170181"
+    }
+  ],
+  "NUM_ALEATORIO_CHAVE": 1111111,
+  "NUM_SITE": "0",
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "COD_UF_EMISSAO": "42",
+  "NUM_SERIE_NF": 71,
+  "ENDERECO": [
+    {
+      "NUM_LOGRAD": "92",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "01052",
+      "DSC_LOGRAD": "PC Pereira Oliveira",
+      "NOM_PAIS_BACEN": "BRASIL",
+      "IND_TIPO_ENDERECO": "1",
+      "NOM_SGL_UF_IBGE": "SC",
+      "COD_MUNICIPIO_IBGE": "4205407",
+      "DSC_COMPL_LOGRAD": "Andar 6",
+      "DSC_BAIRRO": "Centro",
+      "NOM_MUNICIPIO_IBGE": "Florianópolis",
+      "COD_CEP": "88010540",
+      "COD_DDD_TELEFONE_PRINC": "00"
+    },
+    {
+      "NUM_LOGRAD": "533",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "991391331",
+      "DSC_LOGRAD": "R DOUTOR FRITZ MUELLER",
+      "NOM_PAIS_BACEN": "BRASIL",
+      "IND_TIPO_ENDERECO": "2",
+      "NOM_SGL_UF_IBGE": "SC",
+      "COD_MUNICIPIO_IBGE": "4202404",
+      "DSC_COMPL_LOGRAD": "ANDAR 01",
+      "DSC_BAIRRO": "DO SALTO",
+      "NOM_MUNICIPIO_IBGE": "BLUMENAU",
+      "COD_CEP": "89031620",
+      "COD_DDD_TELEFONE_PRINC": "47"
+    }
+  ],
+  "COD_DV_CHV_NFCOM": "1",
+  "INF_DESTINATARIO": {
+    "IND_IE_CLIENTE": 9,
+    "DSC_NOME_CLIENTE": "FREE ACTION MONTADORA DE BICICLETAS LTDA",
+    "DSC_IDENT_OUTROS_CLI": "28643004000107"
+  },
+  "DAT_EMISSAO_FAT_NF": "2025-10-17T16:45:10-03:00",
+  "INF_ADICIONAL_FISCO": [
+    {
+      "DSC_INFO_ADICIONAL_FISCO": "Documento fiscal emitido conforme autorização do art. 22-M, Anexo 7, RICMS/SC"
+    }
+  ],
+  "CAMPOS_ADIC": {
+    "NUM_INTERNO_FAT": "0002389015",
+    "COD_ESTAB_EMIT": "4801",
+    "QTD_ENVIO_NFCOM": 1,
+    "IND_COMBO": "2",
+    "DSC_CICLO_FAT": "01"
+  },
+  "DSC_VERSAO": "100",
+  "VERSAO": "1.13",
+  "ITEM": [
+    {
+      "NUM_ITEM": "0001",
+      "IMPOSTO": [
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "1.65"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "09",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "25.00"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.41"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "7.60"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "10",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "25.00"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "1.90"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "0.00"
+          },
+          "IND_AUSEN_TRIB_ICMS": "1",
+          "IND_GRUPO_TIPO_IMPOSTO": "08",
+          "IND_CLASSIF_TRIBUT": "99",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.00"
+          }
+        }
+      ],
+      "IND_CLASSIF_PRODUTO_SERVICO": "0600601",
+      "COD_UNID_BASICA_MEDIDA": 4,
+      "DSC_PRODUTO_SERVICO": "Gestor Online",
+      "VLR_UNITARIO_ITEM": {
+        "$numberDecimal": "25.00"
+      },
+      "VLR_TOT_ITEM": {
+        "$numberDecimal": "25.00"
+      },
+      "COD_PRODUTO_SERVICO": "P_PP_M4U271",
+      "QTD_FATURADA": {
+        "$numberDecimal": "1"
+      },
+      "IMPOSTO_REFORMA": {
+        "COD_CST": "410",
+        "COD_CLASSIF_TRIB": "410008",
+        "VLR_BC_TRIBUTO": {
+          "$numberDecimal": "21.69"
+        },
+        "TRIBUTO_IBSUF": {
+          "PCT_ALIQUOTA_IBSUF": {
+            "$numberDecimal": "0.10"
+          },
+          "VLR_TRIBUTO_IBSUF": {
+            "$numberDecimal": "0.02"
+          }
+        },
+        "TRIBUTO_IBS_MUNICIPAL": {
+          "PCT_ALIQUOTA_IBSMUN": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBS": {
+            "$numberDecimal": "0.02"
+          },
+          "VLR_TRIBUTO_IBSMUN": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_CBS": {
+          "PCT_ALIQUOTA_CBS": {
+            "$numberDecimal": "0.90"
+          },
+          "VLR_TRIBUTO_CBS": {
+            "$numberDecimal": "0.20"
+          }
+        }
+      }
+    }
+  ],
+  "NUM_NFCOM": 4388,
+  "COD_IDENT_DOC_COBRANCA": "0002389015   ",
+  "INF_EMITENTE": {
+    "DSC_RAZAO_SOCIAL_EMIT": "CLARO S/A",
+    "COD_REG_TRIB_EMIT": "3",
+    "DSC_NOME_FANTASIA_EMIT": "CLARO S/A",
+    "COD_IE_EMIT": "255381832",
+    "NUM_CNPJ_EMIT": "40432544019166"
+  },
+  "INF_ADICIONAL_CONTRIB": [
+    {
+      "DSC_INFO_ADICIONAL_CONTRIB": "Contribuição para o Fust 1% e Funttel 0,5% sobre os valores dos serviços de Telecomunicações, Não Repassados ao Assinante."
+    }
+  ],
+  "TOTAL_NFCOM": {
+    "VLR_TOT_FUNTTEL": {
+      "$numberDecimal": "0.81"
+    },
+    "VLR_TOT_FUST": {
+      "$numberDecimal": "1.63"
+    },
+    "VLR_TOT_RET_PIS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ICMS": {
+      "$numberDecimal": "34.57"
+    },
+    "VLR_TOT_RET_IRRF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_NFCOM": {
+      "$numberDecimal": "304.62"
+    },
+    "VLR_TOT_FCP": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_OUTROS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DESCONTO": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_BC": {
+      "$numberDecimal": "203.35"
+    },
+    "VLR_TOT_PIS": {
+      "$numberDecimal": "1.89"
+    },
+    "VLR_TOT_ICMS_DESON": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_RET_COFINS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_COFINS": {
+      "$numberDecimal": "8.69"
+    },
+    "VLR_TOT_ITEM": {
+      "$numberDecimal": "304.62"
+    },
+    "VLR_TOT_RET_CSLL": {
+      "$numberDecimal": "0.00"
+    }
+  },
+  "DSC_SGL_EMPRESA": "001",
+  "DAT_GRAV_NF_FATURADOR": "2025-02-02 00:00:00",
+  "AUTORIZ_XML": [
+    {
+      "COD_TIPO_DOCUMENTO_AUT_XML": "2",
+      "NUM_DOCUMENTO_AUT_XML": "28643004000107"
+    }
+  ],
+  "COD_TIPO_AMBIENTE": 2,
+  "TRANSACTION_ID": "202503139995NAOTELCOISS",
+  "DSC_SGL_UF_EMISSAO": "SC",
+  "NOM_SISTEMA_ORIGEM": "BSIMMOB",
+  "COD_FORMA_EMISSAO_NFCOM": 1,
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-10-17T16:48:22.699",
+  "CARIMBO": [
+    {
+      "COD_CARIMBO": "430",
+      "DAT_CARIMBO": "2025-10-17T16:45:10.991-03:00",
+      "IND_ORIGEM_CAMPO": "1",
+      "DSC_GRUPO_ELEMENTO": "DADOS_ASSINANTE.COD_TIPO_ASSINANTE",
+      "DSC_CONTEUDO_CAMPO_ORIGINAL": "3",
+      "DSC_CONTEUDO_CAMPO_CORRIGIDO": "99",
+      "NUM_ITEM_ALTERADO_NF": "9999",
+      "DAT_ULT_ATUALIZ": "None"
+    },
+    {
+      "COD_CARIMBO": "430",
+      "DAT_CARIMBO": "2025-10-17T16:45:10.991-03:00",
+      "IND_ORIGEM_CAMPO": "1",
+      "DSC_GRUPO_ELEMENTO": "INF_DESTINATARIO.NUM_CNPJ_CLI",
+      "DSC_CONTEUDO_CAMPO_ORIGINAL": "28643004000107",
+      "DSC_CONTEUDO_CAMPO_CORRIGIDO": "None",
+      "NUM_ITEM_ALTERADO_NF": "9999",
+      "DAT_ULT_ATUALIZ": "None"
+    },
+    {
+      "COD_CARIMBO": "430",
+      "DAT_CARIMBO": "2025-10-17T16:45:10.991-03:00",
+      "IND_ORIGEM_CAMPO": "1",
+      "DSC_GRUPO_ELEMENTO": "INF_DESTINATARIO.DSC_IDENT_OUTROS_CLI",
+      "DSC_CONTEUDO_CAMPO_ORIGINAL": "None",
+      "DSC_CONTEUDO_CAMPO_CORRIGIDO": "28643004000107",
+      "NUM_ITEM_ALTERADO_NF": "9999",
+      "DAT_ULT_ATUALIZ": "None"
+    },
+    {
+      "COD_CARIMBO": "430",
+      "DAT_CARIMBO": "2025-10-17T16:45:10.991-03:00",
+      "IND_ORIGEM_CAMPO": "1",
+      "DSC_GRUPO_ELEMENTO": "DAT_EMISSAO_FAT_NF",
+      "DSC_CONTEUDO_CAMPO_ORIGINAL": "2025-10-16T16:01:27-03:00",
+      "DSC_CONTEUDO_CAMPO_CORRIGIDO": "2025-10-17T16:45:10-03:00",
+      "NUM_ITEM_ALTERADO_NF": "9999",
+      "DAT_ULT_ATUALIZ": "None"
+    }
+  ],
+  "TOTAL_REFORMA": {
+    "VLR_TOT_BC_IBS_CBS": "21.69",
+    "VLR_TOT_DIF_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSUF": "0.02",
+    "VLR_TOT_DIF_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSMUN": "0.00",
+    "VLR_TOT_IBS": "0.02",
+    "VLR_TOT_DIF_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_CBS": "0.20"
+  }
+}

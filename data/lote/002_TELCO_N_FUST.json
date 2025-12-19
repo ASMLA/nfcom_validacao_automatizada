@@ -1,0 +1,269 @@
+{
+  "_id": {
+    "$oid": "69304b8bc26dc178a301a0e9"
+  },
+  "CONTROLE_FATURA": {
+    "DAT_USO_FIM": "2025-04-30",
+    "DAT_ANO_MES_REFER_FAT": "202505",
+    "DSC_COD_BARRA": "846700000009002500060039103806447670202505150005",
+    "COD_AUTORIZ_DEBITO_CC": "73805883",
+    "DAT_USO_INICIO": "2025-03-30",
+    "DAT_VENCTO_FAT": "2025-05-15"
+  },
+  "COD_FINALIDADE_NF": "0",
+  "DAT_GRAV_IDMC": "2025-09-17T10:35:36",
+  "NUM_MODELO_NFCOM": 62,
+  "COD_MUN_FG": "3549409",
+  "DADOS_ASSINANTE": {
+    "NUM_CONTRATO_ASSINANTE": "73805883",
+    "COD_TIPO_ASSINANTE": "3",
+    "COD_UNICO_CLIENTE": "73805883",
+    "DAT_INICIO_CONTRATO": "2002-03-23",
+    "NUM_TERM_PRI_CLI": "1638182515",
+    "COD_TIPO_SERVICO": "1",
+    "COD_UF_HABILIT_TERMINAL": 35
+  },
+  "COD_TIPO_FATURAMENTO_NF": "0",
+  "NUM_ALEATORIO_CHAVE": 1111111,
+  "NUM_SITE": "0",
+  "COD_UF_EMISSAO": "35",
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "NUM_SERIE_NF": "051",
+  "ENDERECO": [
+    {
+      "COD_MUNICIPIO_IBGE": "3549409",
+      "NUM_LOGRAD": "1239",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "38182515",
+      "DSC_LOGRAD": "R PARANA",
+      "DSC_BAIRRO": "CENTRO",
+      "NOM_MUNICIPIO_IBGE": "SAO JOAQUIM DA BARRA",
+      "IND_TIPO_ENDERECO": "3",
+      "NOM_SGL_UF_IBGE": "SP",
+      "DSC_EMAIL": "maria_marcheto@zipmail.com.br",
+      "COD_CEP": "14600000",
+      "COD_DDD_TELEFONE_PRINC": "16"
+    },
+    {
+      "COD_MUNICIPIO_IBGE": "3549409",
+      "NUM_LOGRAD": "1239",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "38182515",
+      "DSC_LOGRAD": "R PARANA",
+      "DSC_BAIRRO": "CENTRO",
+      "NOM_MUNICIPIO_IBGE": "SAO JOAQUIM DA BARRA",
+      "IND_TIPO_ENDERECO": "2",
+      "NOM_SGL_UF_IBGE": "SP",
+      "DSC_EMAIL": "maria_marcheto@zipmail.com.br",
+      "COD_CEP": "14600000",
+      "COD_DDD_TELEFONE_PRINC": "16"
+    },
+    {
+      "NUM_LOGRAD": "780",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "21217008",
+      "DSC_LOGRAD": "R Henri Dunant",
+      "IND_TIPO_ENDERECO": "1",
+      "NOM_SGL_UF_IBGE": "SP",
+      "DSC_EMAIL": "margil@embratel.com.br",
+      "COD_MUNICIPIO_IBGE": "3550308",
+      "DSC_COMPL_LOGRAD": "Torre A e Torre B",
+      "DSC_BAIRRO": "Santo Amaro",
+      "NOM_MUNICIPIO_IBGE": "São Paulo",
+      "COD_CEP": "04709110",
+      "COD_DDD_TELEFONE_PRINC": "11"
+    }
+  ],
+  "COD_DV_CHV_NFCOM": "1",
+  "INF_DESTINATARIO": {
+    "NUM_CPF_CLI": "20430370806",
+    "IND_IE_CLIENTE": 9,
+    "DSC_NOME_CLIENTE": "EDGARD DE BRITO"
+  },
+  "DAT_EMISSAO_FAT_NF": "2025-09-17T07:20:54-03:00",
+  "CAMPOS_ADIC": {
+    "NUM_INTERNO_FAT": "0310380644767",
+    "COD_ESTAB_EMIT": "1101",
+    "QTD_ENVIO_NFCOM": 1,
+    "DSC_CICLO_FAT": "M15"
+  },
+  "DSC_VERSAO": "100",
+  "VERSAO": 1.13,
+  "ITEM": [
+    {
+      "NUM_ITEM": "0001",
+      "IMPOSTO": [
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "18.00"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "01",
+          "IND_CLASSIF_TRIBUT": "00",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "0.25"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.04"
+          }
+        }
+      ],
+      "COD_CFOP": "5307",
+      "IND_CLASSIF_PRODUTO_SERVICO": "0300102",
+      "COD_UNID_BASICA_MEDIDA": 4,
+      "DSC_PRODUTO_SERVICO": "Tráfego Fixo-Fixo LDN",
+      "VLR_UNITARIO_ITEM": {
+        "$numberDecimal": "0.25"
+      },
+      "VLR_OUTRA_DESPESA": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_DESCONTO": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_TOT_ITEM": {
+        "$numberDecimal": "0.25"
+      },
+      "COD_PRODUTO_SERVICO": "csldddtrff",
+      "QTD_FATURADA": {
+        "$numberDecimal": "1"
+      },
+      "IMPOSTO_REFORMA": {
+        "COD_CST": "000",
+        "COD_CLASSIF_TRIB": "000001",
+        "VLR_BC_TRIBUTO": {
+          "$numberDecimal": "0.21"
+        },
+        "TRIBUTO_IBSUF": {
+          "PCT_ALIQUOTA_IBSUF": {
+            "$numberDecimal": "0.10"
+          },
+          "VLR_TRIBUTO_IBSUF": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_IBS_MUNICIPAL": {
+          "PCT_ALIQUOTA_IBSMUN": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBS": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBSMUN": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_CBS": {
+          "PCT_ALIQUOTA_CBS": {
+            "$numberDecimal": "0.90"
+          },
+          "VLR_TRIBUTO_CBS": {
+            "$numberDecimal": "0.00"
+          }
+        }
+      }
+    }
+  ],
+  "NUM_NFCOM": 3534,
+  "COD_IDENT_DOC_COBRANCA": "0310380644767",
+  "INF_EMITENTE": {
+    "DSC_RAZAO_SOCIAL_EMIT": "Claro",
+    "COD_REG_TRIB_EMIT": "3",
+    "COD_IE_EMIT": "114814878119",
+    "NUM_CNPJ_EMIT": "40432544000147"
+  },
+  "TOTAL_NFCOM": {
+    "VLR_TOT_FUNTTEL": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_FUST": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_RET_PIS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ICMS": {
+      "$numberDecimal": "0.04"
+    },
+    "VLR_TOT_RET_IRRF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_NFCOM": {
+      "$numberDecimal": "0.25"
+    },
+    "VLR_TOT_FCP": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_OUTROS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DESCONTO": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_BC": {
+      "$numberDecimal": "0.25"
+    },
+    "VLR_TOT_PIS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ICMS_DESON": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_RET_COFINS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_COFINS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ITEM": {
+      "$numberDecimal": "0.25"
+    },
+    "VLR_TOT_RET_CSLL": {
+      "$numberDecimal": "0.00"
+    }
+  },
+  "DSC_SGL_EMPRESA": "CLO",
+  "DAT_GRAV_NF_FATURADOR": "2025-09-17 10:20:54",
+  "AUTORIZ_XML": [
+    {
+      "COD_TIPO_DOCUMENTO_AUT_XML": "1",
+      "NUM_DOCUMENTO_AUT_XML": "20430370806"
+    }
+  ],
+  "COD_TIPO_AMBIENTE": 2,
+  "TRANSACTION_ID": "202503122025TELCONFUST",
+  "DSC_SGL_UF_EMISSAO": "SP",
+  "NOM_SISTEMA_ORIGEM": "ARBOR_CUST1",
+  "COD_FORMA_EMISSAO_NFCOM": 1,
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-17T10:41:32.226",
+  "TOTAL_REFORMA": {
+    "VLR_TOT_BC_IBS_CBS": "0.21",
+    "VLR_TOT_DIF_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DIF_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSMUN": "0.00",
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DIF_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_CBS": {
+      "$numberDecimal": "0.00"
+    }
+  }
+}
