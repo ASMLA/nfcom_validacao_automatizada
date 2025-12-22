@@ -1,5 +1,5 @@
-import csv
 from pathlib import Path
+import csv
 from openpyxl import Workbook
 
 from nf_claro_2025.invoice_loader import carregar_invoice
@@ -10,150 +10,87 @@ from nf_claro_2025.reporting.audit_reporter import AuditReporter
 
 class BatchProcessor:
     """
-    Processa NF Claro 2025 (single ou lote)
-
-    - Mantém feedback no console
-    - Gera HTML individual
-    - Gera auditoria TXT
-    - Gera CSV/XLSX consolidado (lote)
+    Orquestra execução SINGLE e LOTE.
+    Organiza saída e mantém feedback no console.
     """
 
-    def __init__(self, config, gerar_html=False, gerar_audit=False):
+    def __init__(self, config, gerar_html=False, gerar_audit=False, gerar_pdf=False):
         self.config = config
         self.gerar_html = gerar_html
         self.gerar_audit = gerar_audit
+        self.gerar_pdf = gerar_pdf
+
         self.validator = Validator(config)
 
+        self.html_reporter = HTMLReporter() if gerar_html else None
+        self.audit_reporter = AuditReporter() if gerar_audit else None
+
     # ==================================================
-    # SINGLE
-    # ==================================================
-    def processar_single(self, caminho_json, pasta_saida):
-        pasta_saida = Path(pasta_saida)
+    def processar_single(self, arquivo_json: Path):
+        pasta_saida = Path("reports/single")
         pasta_saida.mkdir(parents=True, exist_ok=True)
 
-        arquivo = Path(caminho_json)
-        if not arquivo.exists():
-            raise FileNotFoundError(f"Arquivo não encontrado: {arquivo}")
-
-        self._processar_arquivo(arquivo, pasta_saida)
+        self._processar_arquivo(arquivo_json, pasta_saida)
 
     # ==================================================
-    # LOTE
-    # ==================================================
-    def processar_lote(self, pasta_json, pasta_saida):
-        pasta_saida = Path(pasta_saida)
+    def processar_lote(self, pasta_json: Path):
+        pasta_saida = Path("reports/lote")
         pasta_saida.mkdir(parents=True, exist_ok=True)
-
-        pasta_json = Path(pasta_json)
-        arquivos = list(pasta_json.glob("*.json"))
-
-        if not arquivos:
-            raise RuntimeError("Nenhum arquivo JSON encontrado para processamento em lote.")
 
         linhas_consolidadas = []
 
-        for arquivo in arquivos:
+        for arquivo in pasta_json.glob("*.json"):
             linha = self._processar_arquivo(arquivo, pasta_saida)
             if linha:
                 linhas_consolidadas.append(linha)
 
-        self._salvar_csv(linhas_consolidadas, pasta_saida / "consolidado.csv")
-        self._salvar_xlsx(linhas_consolidadas, pasta_saida / "consolidado.xlsx")
+        if linhas_consolidadas:
+            self._salvar_csv(linhas_consolidadas, pasta_saida / "consolidado.csv")
+            self._salvar_xlsx(linhas_consolidadas, pasta_saida / "consolidado.xlsx")
 
     # ==================================================
-    # CORE ÚNICO (SINGLE + LOTE)
-    # ==================================================
-    def _processar_arquivo(self, arquivo, pasta_saida):
-        invoice = carregar_invoice(arquivo)
+    def _processar_arquivo(self, arquivo_json: Path, pasta_saida: Path):
+
+        invoice = carregar_invoice(arquivo_json)
         summary, issues = self.validator.validar(invoice)
 
-        # ------------------------------
-        # FEEDBACK NO CONSOLE (RESTAURADO)
-        # ------------------------------
-        nf = summary.get("nf")
-
-        if not issues:
-            print(f"NF {nf} | STATUS: OK")
-        else:
-            print(f"NF {nf} | STATUS: DIVERGENTE")
-            for issue in issues:
-                print(
-                    f"  - {issue.get('regra')}: "
-                    f"esperado={issue.get('esperado')} "
-                    f"encontrado={issue.get('encontrado')}"
-                )
-
-        # ------------------------------
-        # PASTA DA NF
-        # ------------------------------
-        categoria = summary["itens"][0]["categoria"] if summary["itens"] else "SEM_ITEM"
-        pasta_nf = pasta_saida / f"NF_{nf}_{arquivo.stem}_{categoria}"
+        # 📂 Pasta = nome do JSON
+        pasta_nf = pasta_saida / arquivo_json.name
         pasta_nf.mkdir(parents=True, exist_ok=True)
 
-        # ------------------------------
-        # HTML
-        # ------------------------------
-        if self.gerar_html:
-            html = HTMLReporter()
-            html.to_html(
+        if self.html_reporter:
+            self.html_reporter.to_html(
                 summary=summary,
                 invoice=invoice,
                 issues=issues,
-                caminho_html=pasta_nf / "relatorio.html"
+                caminho_html=pasta_nf / "relatorio.html",
+                gerar_pdf=self.gerar_pdf
             )
 
-        # ------------------------------
-        # AUDIT
-        # ------------------------------
-        if self.gerar_audit:
-            texto = AuditReporter.to_text(invoice, summary, self.config)
-            with open(pasta_nf / "auditoria.txt", "w", encoding="utf-8") as f:
-                f.write(texto)
+        if self.audit_reporter:
+            texto = self.audit_reporter.to_text(invoice, summary, self.config)
+            (pasta_nf / "auditoria.txt").write_text(texto, encoding="utf-8")
 
-        return self._linha_consolidada(arquivo.name, summary, issues)
-
-    # ==================================================
-    # CONSOLIDAÇÃO
-    # ==================================================
-    def _linha_consolidada(self, arquivo, summary, issues):
-        tot = summary["totais"]
+        num_nf = summary.get("nf", "SEM_NF")
+        status = "OK" if not issues else "DIVERGENTE"
+        print(f"[{status}] NF {num_nf} - {arquivo_json.name}")
 
         return {
-            "Arquivo": arquivo,
-            "NF": summary.get("nf"),
-            "Cliente": summary.get("cliente"),
-            "Categoria": summary["itens"][0]["categoria"] if summary["itens"] else None,
+            "Arquivo": arquivo_json.name,
+            "NF": num_nf,
             "Qtd_Issues": len(issues),
-            "Status": "OK" if not issues else "DIVERGENTE",
-
-            "CT011_TotBC_Esperado": tot["CT011_TotBC"]["esperado"],
-            "CT011_TotBC_Encontrado": tot["CT011_TotBC"]["encontrado"],
-            "CT012_TotIBSUF_Esperado": tot["CT012_TotIBSUF"]["esperado"],
-            "CT012_TotIBSUF_Encontrado": tot["CT012_TotIBSUF"]["encontrado"],
-            "CT013_TotIBSMUN_Esperado": tot["CT013_TotIBSMUN"]["esperado"],
-            "CT013_TotIBSMUN_Encontrado": tot["CT013_TotIBSMUN"]["encontrado"],
-            "CT014_TotIBS_Esperado": tot["CT014_TotIBS"]["esperado"],
-            "CT014_TotIBS_Encontrado": tot["CT014_TotIBS"]["encontrado"],
-            "CT015_TotCBS_Esperado": tot["CT015_TotCBS"]["esperado"],
-            "CT015_TotCBS_Encontrado": tot["CT015_TotCBS"]["encontrado"],
+            "Status": status
         }
 
     # ==================================================
-    # SAÍDAS
-    # ==================================================
     def _salvar_csv(self, linhas, caminho):
-        if not linhas:
-            return
-
         with open(caminho, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=linhas[0].keys())
             writer.writeheader()
             writer.writerows(linhas)
 
+    # ==================================================
     def _salvar_xlsx(self, linhas, caminho):
-        if not linhas:
-            return
-
         wb = Workbook()
         ws = wb.active
         ws.append(list(linhas[0].keys()))

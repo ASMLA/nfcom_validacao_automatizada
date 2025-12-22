@@ -6,11 +6,13 @@ from nf_claro_2025.config import carregar_configuracao
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validador NF Claro 2025")
-    parser.add_argument("caminho", help="Arquivo JSON (single) ou pasta (lote)")
-    parser.add_argument("--multi", action="store_true", help="Processar em lote")
+    parser = argparse.ArgumentParser(description="Validador NFCom - Reforma Tributária")
+
+    parser.add_argument("caminho", help="Arquivo JSON ou diretório")
+    parser.add_argument("--multi", action="store_true", help="Processar diretório (lote)")
     parser.add_argument("--html", action="store_true", help="Gerar relatório HTML")
-    parser.add_argument("--audit", action="store_true", help="Gerar relatório AUDIT")
+    parser.add_argument("--audit", action="store_true", help="Gerar auditoria TXT")
+    parser.add_argument("--pdf", action="store_true", help="Gerar PDF a partir do HTML")
 
     args = parser.parse_args()
 
@@ -19,26 +21,16 @@ def main():
     processor = BatchProcessor(
         config=config,
         gerar_html=args.html,
-        gerar_audit=args.audit
+        gerar_audit=args.audit,
+        gerar_pdf=args.pdf
     )
 
-    # 📁 Pasta base de relatórios
-    base_reports = Path("reports")
+    caminho = Path(args.caminho)
 
     if args.multi:
-        # ---------------- LOTE ----------------
-        pasta_saida = base_reports / "lote"
-        processor.processar_lote(
-            pasta_json=args.caminho,
-            pasta_saida=pasta_saida
-        )
+        processor.processar_lote(caminho)
     else:
-        # ---------------- SINGLE ----------------
-        pasta_saida = base_reports / "single"
-        processor.processar_single(
-            caminho_json=args.caminho,
-            pasta_saida=pasta_saida
-        )
+        processor.processar_single(caminho)
 
 
 if __name__ == "__main__":
