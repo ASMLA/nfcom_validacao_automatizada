@@ -1,5 +1,6 @@
 from decimal import Decimal
 from nf_claro_2025.classification import ClassificadorNF
+
 from nf_claro_2025.rules.ct003_fixos import CT003_CamposFixos
 from nf_claro_2025.rules.ct004_cst import CT004_CST
 from nf_claro_2025.rules.ct005_cclass import CT005_cClassTrib
@@ -8,6 +9,7 @@ from nf_claro_2025.rules.ct007_ibuf import CT007_IBSUF
 from nf_claro_2025.rules.ct008_ibs import CT008_IBS
 from nf_claro_2025.rules.ct009_ibsmun import CT009_IBSMUN
 from nf_claro_2025.rules.ct010_cbs import CT010_CBS
+
 from nf_claro_2025.rules.ct011_tot_bc import CT011_TotBC
 from nf_claro_2025.rules.ct012_tot_ibuf import CT012_TotIBSUF
 from nf_claro_2025.rules.ct013_tot_ibsmun import CT013_TotIBSMUN
@@ -18,18 +20,10 @@ from nf_claro_2025.rules.ct015_tot_cbs import CT015_TotCBS
 class Validator:
     """
     Executor das regras CT003–CT015.
-    Estrutura nova e oficial do summary:
 
-    summary["itens"] = [
-        {
-            "num_item": "...",
-            "categoria": "...",
-            "descricao": "...",
-            "CT003_IBSUF": {...},
-            "CT004": {...},
-            ...
-        }
-    ]
+    🔴 ALTERAÇÃO ÚNICA:
+    - Diferencia TELCO FUST vs TELCO NÃO FUST
+      com base na existência de IND_GRUPO_TIPO_IMPOSTO == "11"
     """
 
     def __init__(self, config):
@@ -53,7 +47,7 @@ class Validator:
         self.ct015 = CT015_TotCBS()
 
     # ============================================================
-    # Valida a NF
+    # Validação da NF
     # ============================================================
     def validar(self, invoice):
 
@@ -61,7 +55,7 @@ class Validator:
             "itens": [],
             "totais": {},
             "nf": invoice.get("NUM_NFCOM"),
-            "cliente": invoice.get("INF_DESTINATARIO", {}).get("DSC_NOME_CLIENTE")
+            "cliente": invoice.get("INF_DESTINATARIO", {}).get("DSC_NOME_CLIENTE"),
         }
 
         itens_json = invoice.get("ITEM", [])
@@ -69,17 +63,30 @@ class Validator:
         issues = []
 
         for item in itens_json:
-
             resultado_item = {}
             num_item = item.get("NUM_ITEM")
 
             classificacao = self.classificador.classificar_item(item)
+            categoria_base = classificacao.get("categoria")
 
-            # Estrutura NOVA do summary
+            # ====================================================
+            # 🔴 ÚNICA REGRA NOVA — TELCO FUST vs NÃO FUST
+            # ====================================================
+            categoria_final = categoria_base
+
+            if categoria_base == "TELCO":
+                tem_fust = any(
+                    imp.get("IND_GRUPO_TIPO_IMPOSTO") == "11"
+                    for imp in item.get("IMPOSTO", [])
+                )
+                categoria_final = "TELCO FUST" if tem_fust else "TELCO NÃO FUST"
+
+            # ====================================================
+
             item_summary = {
                 "num_item": num_item,
-                "categoria": classificacao.get("categoria"),
-                "descricao": item.get("DSC_PRODUTO_SERVICO")
+                "categoria": categoria_final,
+                "descricao": item.get("DSC_PRODUTO_SERVICO"),
             }
 
             # Regras CT003–CT010
@@ -92,23 +99,22 @@ class Validator:
             self.ct009.validar(item, resultado_item, classificacao)
             self.ct010.validar(item, resultado_item, classificacao)
 
-            # Merge resultados no summary
-            for regra_nome, data in resultado_item.items():
-                item_summary[regra_nome] = data
+            for regra, data in resultado_item.items():
+                item_summary[regra] = data
 
                 if data.get("erro"):
                     issues.append({
                         "item": num_item,
-                        "regra": regra_nome,
+                        "regra": regra,
                         "esperado": data.get("esperado"),
-                        "encontrado": data.get("encontrado")
+                        "encontrado": data.get("encontrado"),
                     })
 
             summary["itens"].append(item_summary)
             resultados_itens.append(resultado_item)
 
         # Totalizadores CT011–CT015
-        for totalizador, regra in [
+        for nome, regra in [
             ("CT011_TotBC", self.ct011),
             ("CT012_TotIBSUF", self.ct012),
             ("CT013_TotIBSMUN", self.ct013),
@@ -116,14 +122,14 @@ class Validator:
             ("CT015_TotCBS", self.ct015),
         ]:
             res = regra.totalizar(invoice, resultados_itens)
-            summary["totais"][totalizador] = res
+            summary["totais"][nome] = res
 
             if res.get("erro"):
                 issues.append({
                     "item": "TOTAL",
-                    "regra": totalizador,
+                    "regra": nome,
                     "esperado": res.get("esperado"),
-                    "encontrado": res.get("encontrado")
+                    "encontrado": res.get("encontrado"),
                 })
 
         return summary, issues

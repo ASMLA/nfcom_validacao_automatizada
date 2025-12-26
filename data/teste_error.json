@@ -1,0 +1,304 @@
+{
+  "_id": {
+    "$oid": "694939c82237386c52bedc1c"
+  },
+  "COD_FINALIDADE_NF": "0",
+  "DAT_GRAV_IDMC": "2025-12-22T09:26:55",
+  "NUM_MODELO_NFCOM": 62,
+  "COD_MUN_FG": "3304557",
+  "DADOS_ASSINANTE": {
+    "NUM_CONTRATO_ASSINANTE": "PS10254177",
+    "COD_TIPO_ASSINANTE": "3",
+    "COD_UNICO_CLIENTE": "PS10254177",
+    "DAT_INICIO_CONTRATO": "2004-08-24",
+    "NUM_TERM_PRI_CLI": "21991143503",
+    "COD_TIPO_SERVICO": "1",
+    "COD_UF_HABILIT_TERMINAL": 33
+  },
+  "COD_TIPO_FATURAMENTO_NF": "0",
+  "NUM_ALEATORIO_CHAVE": 1111111,
+  "NUM_SITE": "0",
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 4,
+  "COD_UF_EMISSAO": "33",
+  "NUM_SERIE_NF": 65,
+  "ENDERECO": [
+    {
+      "COD_MUNICIPIO_IBGE": "3304557",
+      "NUM_LOGRAD": "42",
+      "COD_PAIS_BACEN": "1058",
+      "NUM_TELEFONE_PRINC": "01052",
+      "DSC_LOGRAD": "R Mena Barreto",
+      "DSC_BAIRRO": "Botafogo",
+      "NOM_PAIS_BACEN": "BRASIL",
+      "NOM_MUNICIPIO_IBGE": "Rio de Janeiro",
+      "IND_TIPO_ENDERECO": "1",
+      "NOM_SGL_UF_IBGE": "RJ",
+      "COD_CEP": "22271100",
+      "COD_DDD_TELEFONE_PRINC": "00"
+    },
+    {
+      "DSC_COMPL_LOGRAD": "Q 125",
+      "NUM_LOGRAD": "L 08",
+      "COD_PAIS_BACEN": "1058",
+      "DSC_LOGRAD": ". R Visconde Inhauma",
+      "DSC_BAIRRO": "Jardim Metropolis",
+      "NOM_PAIS_BACEN": "Brasil",
+      "NOM_MUNICIPIO_IBGE": "SAO JOAO DE MERITI",
+      "IND_TIPO_ENDERECO": "2",
+      "NOM_SGL_UF_IBGE": "RJ",
+      "COD_CEP": "25575300"
+    }
+  ],
+  "COD_DV_CHV_NFCOM": "1",
+  "INF_DESTINATARIO": {
+    "NUM_CPF_CLI": "09963582770",
+    "IND_IE_CLIENTE": 9,
+    "DSC_NOME_CLIENTE": "Fabiana Lucia Vargas"
+  },
+  "DAT_EMISSAO_FAT_NF": "2025-12-19T18:50:52-03:00",
+  "INF_ADICIONAL_FISCO": [
+    {
+      "DSC_INFO_ADICIONAL_FISCO": "Documento fiscal emitido conforme autorização do art. 1º-G,  Anexo XVI,  Resolução 720/2014 Lei 12.741/12:Tributos Federais (PIS e COFINS - 9.25%)."
+    }
+  ],
+  "DSC_VERSAO": "100",
+  "VERSAO": 1.13,
+  "ITEM": [
+    {
+      "NUM_ITEM": "1",
+      "IMPOSTO": [
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "0.65"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "09",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "3.80"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.02"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "20.00"
+          },
+          "VLR_FCP": {
+            "$numberDecimal": "0.20"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "01",
+          "IND_CLASSIF_TRIBUT": "00",
+          "VLR_ALIQ_FCP": {
+            "$numberDecimal": "4.00"
+          },
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "5.00"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "1.00"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "1.00"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "11",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "3.67"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.04"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "3.00"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "10",
+          "IND_CLASSIF_TRIBUT": "01",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "3.80"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.11"
+          }
+        },
+        {
+          "VLR_ALIQ_TRIBUTO": {
+            "$numberDecimal": "0.50"
+          },
+          "IND_GRUPO_TIPO_IMPOSTO": "12",
+          "VLR_BC_TRIBUTO": {
+            "$numberDecimal": "3.67"
+          },
+          "VLR_TRIBUTO": {
+            "$numberDecimal": "0.02"
+          }
+        }
+      ],
+      "COD_CFOP": "5307",
+      "IND_CLASSIF_PRODUTO_SERVICO": "0500501",
+      "COD_UNID_BASICA_MEDIDA": 4,
+      "DSC_PRODUTO_SERVICO": "Recarga de créditos - Antecipação",
+      "VLR_UNITARIO_ITEM": {
+        "$numberDecimal": "5.0000"
+      },
+      "VLR_OUTRA_DESPESA": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_DESCONTO": {
+        "$numberDecimal": "0.00"
+      },
+      "VLR_TOT_ITEM": {
+        "$numberDecimal": "5.00"
+      },
+      "COD_PRODUTO_SERVICO": "PP0008",
+      "QTD_FATURADA": {
+        "$numberDecimal": "1"
+      },
+      "IMPOSTO_REFORMA": {
+        "COD_CST": "000",
+        "COD_CLASSIF_TRIB": "000001",
+        "VLR_BC_TRIBUTO": {
+          "$numberDecimal": "3.67"
+        },
+        "TRIBUTO_IBSUF": {
+          "PCT_ALIQUOTA_IBSUF": {
+            "$numberDecimal": "0.10"
+          },
+          "VLR_TRIBUTO_IBSUF": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_IBS_MUNICIPAL": {
+          "PCT_ALIQUOTA_IBSMUN": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBS": {
+            "$numberDecimal": "0.00"
+          },
+          "VLR_TRIBUTO_IBSMUN": {
+            "$numberDecimal": "0.00"
+          }
+        },
+        "TRIBUTO_CBS": {
+          "PCT_ALIQUOTA_CBS": {
+            "$numberDecimal": "0.90"
+          },
+          "VLR_TRIBUTO_CBS": {
+            "$numberDecimal": "0.03"
+          }
+        }
+      }
+    }
+  ],
+  "NUM_NFCOM": 9834,
+  "INF_EMITENTE": {
+    "DSC_RAZAO_SOCIAL_EMIT": "CLARO S/A",
+    "COD_REG_TRIB_EMIT": "3",
+    "DSC_NOME_FANTASIA_EMIT": "CLARO S/A",
+    "COD_IE_EMIT": "78002840",
+    "NUM_CNPJ_EMIT": "40432544006269"
+  },
+  "INF_ADICIONAL_CONTRIB": [
+    {
+      "DSC_INFO_ADICIONAL_CONTRIB": "Central Anatel: 1331. Contribuição para o Fust 1% e Funttel 0,5% sobre os valores dos serviços de telecomunicações - Não repassados ao cliente. Informações sobre regra de suspensão da inadimplência conforme RGC 632/2014 Art 90 a 97: Ao término do prazo de validade do crédito, poderá ocorrer a Susp Parcial, transcorridos 30 dias da susp parcial poderá ocorrer a Susp Total, e transcorridos 30 dias da susp total o contrato poderá ser rescindido."
+    },
+    {
+      "DSC_INFO_ADICIONAL_CONTRIB": "Acesse sua conta e outros serviços: No app Minha Claro/No Whatsapp 11999910621. Na internet-minhaclaro.com.br. Pelo celular *1052# / No atendimento Claro 1052/Ouvidoria-Ligue 08007010180. Fatura em braile ligue 1052 | Deficiente auditivo ou surdo acesse www.claro.com.br/minha-claro. Bem-Vindo a Claro! Estaremos sempre à sua disposição. Para entrar em contato conosco, ligue 1052 do seu celular ou de qualquer outro telefone."
+    }
+  ],
+  "TOTAL_NFCOM": {
+    "VLR_TOT_FUNTTEL": {
+      "$numberDecimal": "0.02"
+    },
+    "VLR_TOT_FUST": {
+      "$numberDecimal": "0.04"
+    },
+    "VLR_TOT_RET_PIS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_ICMS": {
+      "$numberDecimal": "1.00"
+    },
+    "VLR_TOT_RET_IRRF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_NFCOM": {
+      "$numberDecimal": "5.00"
+    },
+    "VLR_TOT_FCP": {
+      "$numberDecimal": "0.20"
+    },
+    "VLR_TOT_OUTROS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DESCONTO": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_BC": {
+      "$numberDecimal": "5.00"
+    },
+    "VLR_TOT_PIS": {
+      "$numberDecimal": "0.02"
+    },
+    "VLR_TOT_ICMS_DESON": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_RET_COFINS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_COFINS": {
+      "$numberDecimal": "0.11"
+    },
+    "VLR_TOT_ITEM": {
+      "$numberDecimal": "5.00"
+    },
+    "VLR_TOT_RET_CSLL": {
+      "$numberDecimal": "0.00"
+    }
+  },
+  "DSC_SGL_EMPRESA": "001",
+  "IND_PREPAGO": "1",
+  "DAT_GRAV_NF_FATURADOR": "2025-12-22 09:20:34",
+  "COD_TIPO_AMBIENTE": 2,
+  "TRANSACTION_ID": "2025120000030302PRE_PAGO",
+  "DSC_SGL_UF_EMISSAO": "RJ",
+  "NOM_SISTEMA_ORIGEM": "NFCOM_PRE_PAGO",
+  "COD_FORMA_EMISSAO_NFCOM": 1,
+  "TOTAL_REFORMA": {
+    "VLR_TOT_BC_IBS_CBS": "3.67",
+    "VLR_TOT_DIF_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DIF_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBSMUN": "0.00",
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DIF_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DEV_TRIB_CBS": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_CBS": "0.03"
+  },
+  "ERRORS": {
+    "TOTAL_REFORMA.VLR_TOT_IBSUF": "VLR_TOT_IBSUF é menor ou igual a zero",
+    "TOTAL_REFORMA.VLR_TOT_IBS": "VLR_TOT_IBS é menor ou igual a zero"
+  },
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-12-22T09:30:52.765"
+}

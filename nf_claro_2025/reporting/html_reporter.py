@@ -1,138 +1,204 @@
-import html
+from pathlib import Path
 from datetime import datetime
+from typing import List, Dict
+
 from nf_claro_2025.reporting.rule_descriptions import RULE_DESCRIPTIONS
 
 
 class HTMLReporter:
     """
-    Gera relatório HTML.
-    Cada ITEM exibe explicitamente sua categoria fiscal.
+    Gera relatório HTML (e PDF opcional) da NF.
+    NÃO altera regras.
+    NÃO altera classificação.
+    Apenas apresenta o summary produzido pelo Validator.
     """
 
-    def to_html(self, summary, invoice, issues, caminho_html, gerar_pdf=False):
-        data_geracao = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    def to_html(
+        self,
+        *,
+        invoice: dict,
+        summary: dict,
+        issues: List[dict],
+        caminho_html: Path,
+        gerar_pdf: bool = False,
+    ):
+        caminho_html.parent.mkdir(parents=True, exist_ok=True)
 
-        html_content = f"""
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Relatório NFCom</title>
-            <style>
-                body {{ font-family: Arial, sans-serif; font-size: 14px; }}
-                h1, h2 {{ margin-top: 30px; }}
-                table {{ border-collapse: collapse; width: 100%; margin-bottom: 25px; }}
-                th, td {{ border: 1px solid #ccc; padding: 6px; }}
-                th {{ background-color: #f1f1f1; }}
-                .ok {{ background-color: #d4edda; font-weight: bold; text-align: center; }}
-                .erro {{ background-color: #f8d7da; font-weight: bold; text-align: center; }}
-                .item-header {{ margin-top: 25px; padding: 8px; background-color: #e9ecef; font-weight: bold; }}
-                .categoria {{ font-style: italic; color: #555; }}
-            </style>
-        </head>
-        <body>
+        html = self._render_html(invoice, summary, issues)
 
-        <h1>Relatório de Validação – NFCom</h1>
-        <p><b>NF:</b> {summary.get("nf")}</p>
-        <p><b>Cliente:</b> {html.escape(str(summary.get("cliente", "")))}</p>
-        <p><b>Data de geração:</b> {data_geracao}</p>
+        caminho_html.write_text(html, encoding="utf-8")
 
-        <h2>Validações por Item</h2>
-        """
-
-        # ===================== ITENS =====================
-        for item in summary.get("itens", []):
-            categoria_item = item.get("categoria", "NÃO IDENTIFICADO")
-
-            html_content += f"""
-            <div class="item-header">
-                ITEM {item["num_item"]} – {html.escape(str(item.get("descricao", "")))}<br>
-                <span class="categoria">Categoria: {categoria_item}</span>
-            </div>
-
-            <table>
-                <tr>
-                    <th>Cenário</th>
-                    <th>Esperado</th>
-                    <th>Encontrado</th>
-                    <th>Status</th>
-                </tr>
-            """
-
-            for regra, resultado in item.items():
-                if regra in ("num_item", "categoria", "descricao"):
-                    continue
-
-                status_ok = not resultado.get("erro")
-                status_txt = "OK" if status_ok else "ERRO"
-                status_class = "ok" if status_ok else "erro"
-
-                nome_regra = RULE_DESCRIPTIONS.get(regra, regra)
-
-                html_content += f"""
-                <tr>
-                    <td>{html.escape(nome_regra)}</td>
-                    <td>{resultado.get("esperado")}</td>
-                    <td>{resultado.get("encontrado")}</td>
-                    <td class="{status_class}">{status_txt}</td>
-                </tr>
-                """
-
-            html_content += "</table>"
-
-        # ===================== TOTALIZADORES =====================
-        html_content += """
-        <h2>Totalizadores</h2>
-        <table>
-            <tr>
-                <th>Cenário</th>
-                <th>Esperado</th>
-                <th>Encontrado</th>
-                <th>Status</th>
-            </tr>
-        """
-
-        for regra, resultado in summary.get("totais", {}).items():
-            status_ok = not resultado.get("erro")
-            status_txt = "OK" if status_ok else "ERRO"
-            status_class = "ok" if status_ok else "erro"
-
-            nome_regra = RULE_DESCRIPTIONS.get(regra, regra)
-
-            html_content += f"""
-            <tr>
-                <td>{html.escape(nome_regra)}</td>
-                <td>{resultado.get("esperado")}</td>
-                <td>{resultado.get("encontrado")}</td>
-                <td class="{status_class}">{status_txt}</td>
-            </tr>
-            """
-
-        html_content += """
-        </table>
-        </body>
-        </html>
-        """
-
-        with open(caminho_html, "w", encoding="utf-8") as f:
-            f.write(html_content)
-
+        # --------------------------------------------------
+        # Geração de PDF (COMPORTAMENTO ORIGINAL)
+        # --------------------------------------------------
         if gerar_pdf:
-            self._gerar_pdf(caminho_html)
+            try:
+                from weasyprint import HTML
+                caminho_pdf = caminho_html.with_suffix(".pdf")
+                HTML(str(caminho_html)).write_pdf(str(caminho_pdf))
+            except Exception as e:
+                print(f"[WARN] Falha ao gerar PDF: {e}")
 
     # ==================================================
-    def _gerar_pdf(self, caminho_html):
-        from weasyprint import HTML
-        import os
+    # Renderização HTML
+    # ==================================================
+    def _render_html(self, invoice: dict, summary: dict, issues: List[dict]) -> str:
+        nf = summary.get("nf", "SEM_NF")
+        cliente = summary.get("cliente", "N/D")
+        data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-        caminho_pdf = str(caminho_html).replace(".html", ".pdf")
+        itens_html = "\n".join(self._render_item(item) for item in summary["itens"])
+        totais_html = self._render_totais(summary["totais"])
 
-        if os.path.exists(caminho_pdf):
-            try:
-                os.remove(caminho_pdf)
-            except PermissionError:
-                raise PermissionError(
-                    f"O arquivo PDF está aberto ou bloqueado:\n{caminho_pdf}\n"
-                    "Feche o arquivo antes de continuar."
-                )
+        return f"""
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Relatório NF {nf}</title>
+<style>
+body {{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}}
+h1, h2, h3 {{
+    color: #2c3e50;
+}}
+.item {{
+    border: 1px solid #ccc;
+    padding: 12px;
+    margin-bottom: 15px;
+}}
+.ok {{
+    color: green;
+    font-weight: bold;
+}}
+.erro {{
+    color: red;
+    font-weight: bold;
+}}
+table {{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 8px;
+}}
+th, td {{
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+}}
+th {{
+    background-color: #f4f4f4;
+}}
+</style>
+</head>
 
-        HTML(caminho_html).write_pdf(caminho_pdf)
+<body>
+
+<h1>Relatório NFCom – Reforma Tributária</h1>
+
+<p><strong>NF:</strong> {nf}</p>
+<p><strong>Cliente:</strong> {cliente}</p>
+<p><strong>Gerado em:</strong> {data}</p>
+
+<hr>
+
+<h2>Itens</h2>
+
+{itens_html}
+
+<hr>
+
+<h2>Totalizadores</h2>
+
+{totais_html}
+
+</body>
+</html>
+"""
+
+    # ==================================================
+    # Renderização de ITEM
+    # ==================================================
+    def _render_item(self, item: Dict) -> str:
+        linhas = []
+
+        for chave, dados in item.items():
+            if not chave.startswith("CT"):
+                continue
+
+            desc = RULE_DESCRIPTIONS.get(chave, chave)
+            status = "erro" if dados.get("erro") else "ok"
+            status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
+
+            linhas.append(f"""
+<tr>
+    <td>{chave}</td>
+    <td>{desc}</td>
+    <td>{dados.get("esperado")}</td>
+    <td>{dados.get("encontrado")}</td>
+    <td class="{status}">{status_txt}</td>
+</tr>
+""")
+
+        linhas_html = "\n".join(linhas)
+
+        return f"""
+<div class="item">
+<h3>
+ITEM {item.get("num_item")} – {item.get("descricao")}
+</h3>
+<p><strong>Categoria:</strong> {item.get("categoria")}</p>
+
+<table>
+<tr>
+    <th>Cenário</th>
+    <th>Descrição</th>
+    <th>Esperado</th>
+    <th>Encontrado</th>
+    <th>Status</th>
+</tr>
+
+{linhas_html}
+
+</table>
+</div>
+"""
+
+    # ==================================================
+    # Renderização dos TOTALIZADORES
+    # ==================================================
+    def _render_totais(self, totais: Dict) -> str:
+        linhas = []
+
+        for chave, dados in totais.items():
+            desc = RULE_DESCRIPTIONS.get(chave, chave)
+            status = "erro" if dados.get("erro") else "ok"
+            status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
+
+            linhas.append(f"""
+<tr>
+    <td>{chave}</td>
+    <td>{desc}</td>
+    <td>{dados.get("esperado")}</td>
+    <td>{dados.get("encontrado")}</td>
+    <td class="{status}">{status_txt}</td>
+</tr>
+""")
+
+        linhas_html = "\n".join(linhas)
+
+        return f"""
+<table>
+<tr>
+    <th>Cenário</th>
+    <th>Descrição</th>
+    <th>Esperado</th>
+    <th>Encontrado</th>
+    <th>Status</th>
+</tr>
+
+{linhas_html}
+
+</table>
+"""
