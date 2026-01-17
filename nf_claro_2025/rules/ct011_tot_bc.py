@@ -1,4 +1,4 @@
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal
 
 
 def _safe_decimal(v):
@@ -18,31 +18,34 @@ def _safe_decimal(v):
 class CT011_TotBC:
     """
     CT011 – Total VLR_TOT_BC_IBS_CBS
-    Soma de todos os valores CT006_BC esperados.
+    Soma CT006.esperado apenas dos itens NÃO reduzidos.
+    Se _DEVOLUCAO_ITEM=True => subtrai.
     """
 
     def totalizar(self, invoice, resultados_itens):
         soma = Decimal("0.00")
-        erro = False
 
         for r in resultados_itens:
-            ct = r.get("CT006")
-            if ct:
-                esp = ct.get("esperado")
-                if esp is not None:
-                    soma += esp
+            if r.get("_EXCECAO_IMPOSTO_REFORMA_REDUZIDO"):
+                continue
 
-        # JSON TOTAL
+            ct = r.get("CT006")
+            if not ct:
+                continue
+
+            esp = ct.get("esperado")
+            if esp is None:
+                continue
+
+            if r.get("_DEVOLUCAO_ITEM"):
+                soma -= esp
+            else:
+                soma += esp
+
         tot_json_raw = invoice.get("TOTAL_REFORMA", {}).get("VLR_TOT_BC_IBS_CBS")
         tot_json = _safe_decimal(tot_json_raw)
 
         if tot_json is None:
             return {"esperado": soma, "encontrado": None, "erro": True}
 
-        erro = (soma != tot_json)
-
-        return {
-            "esperado": soma,
-            "encontrado": tot_json,
-            "erro": erro
-        }
+        return {"esperado": soma, "encontrado": tot_json, "erro": (soma != tot_json)}

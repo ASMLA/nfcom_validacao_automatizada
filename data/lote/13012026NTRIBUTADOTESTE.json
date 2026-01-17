@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "69390660c26dc178a301a0f4"
+    "$oid": "696806e9bb48633d68d4c6d7"
   },
   "CONTROLE_FATURA": {
     "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix0136a66dbf39-5712-4ba8-b506-ce5ac189fa505204000053039865406122.565802BR5909Claro S/A6009Sao Paulo6229052513094000000000025813177256304ED64",
@@ -26,7 +26,9 @@
   "COD_TIPO_FATURAMENTO_NF": "0",
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": {
+    "$numberLong": "1"
+  },
   "COD_UF_EMISSAO": "28",
   "NUM_SERIE_NF": 71,
   "ENDERECO": [
@@ -172,8 +174,8 @@
         "$numberDecimal": "1"
       },
       "IMPOSTO_REFORMA": {
-        "COD_CST": "123",
-        "COD_CLASSIF_TRIB": "123456",
+        "COD_CST": "000",
+        "COD_CLASSIF_TRIB": "000001",
         "VLR_BC_TRIBUTO": {
           "$numberDecimal": "72.09"
         },
@@ -389,27 +391,7 @@
       },
       "IMPOSTO_REFORMA": {
         "COD_CST": "410",
-        "COD_CLASSIF_TRIB": "410999",
-        "VLR_BC_TRIBUTO": null,
-        "TRIBUTO_IBSUF": {
-          "PCT_ALIQUOTA_IBSUF": {
-            "$numberDecimal": "0.10"
-          },
-          "VLR_TRIBUTO_IBSUF": null
-        },
-        "TRIBUTO_IBS_MUNICIPAL": {
-          "PCT_ALIQUOTA_IBSMUN": {
-            "$numberDecimal": "0.00"
-          },
-          "VLR_TRIBUTO_IBS": null,
-          "VLR_TRIBUTO_IBSMUN": null
-        },
-        "TRIBUTO_CBS": {
-          "PCT_ALIQUOTA_CBS": {
-            "$numberDecimal": "0.90"
-          },
-          "VLR_TRIBUTO_CBS": null
-        }
+        "COD_CLASSIF_TRIB": "410999"
       }
     },
     {
@@ -471,27 +453,7 @@
       },
       "IMPOSTO_REFORMA": {
         "COD_CST": "410",
-        "COD_CLASSIF_TRIB": "410999",
-        "VLR_BC_TRIBUTO": null,
-        "TRIBUTO_IBSUF": {
-          "PCT_ALIQUOTA_IBSUF": {
-            "$numberDecimal": "0.10"
-          },
-          "VLR_TRIBUTO_IBSUF": null
-        },
-        "TRIBUTO_IBS_MUNICIPAL": {
-          "PCT_ALIQUOTA_IBSMUN": {
-            "$numberDecimal": "0.00"
-          },
-          "VLR_TRIBUTO_IBS": null,
-          "VLR_TRIBUTO_IBSMUN": null
-        },
-        "TRIBUTO_CBS": {
-          "PCT_ALIQUOTA_CBS": {
-            "$numberDecimal": "0.90"
-          },
-          "VLR_TRIBUTO_CBS": null
-        }
+        "COD_CLASSIF_TRIB": "410999"
       }
     }
   ],
@@ -568,34 +530,46 @@
     }
   ],
   "COD_TIPO_AMBIENTE": 2,
-  "TRANSACTION_ID": "2025090565998674MOBILE",
+  "TRANSACTION_ID": "14012026NTRIBUTADOTESTE",
   "DSC_SGL_UF_EMISSAO": "SE",
   "NOM_SISTEMA_ORIGEM": "MOBILE",
   "COD_FORMA_EMISSAO_NFCOM": 1,
   "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-15T18:21:40.121",
+  "ITEM_LENGTH": 4,
+  "partitionId": 1,
   "TOTAL_REFORMA": {
-    "VLR_TOT_BC_IBS_CBS": "95.73",
+    "VLR_TOT_BC_IBS_CBS": {
+      "$numberDecimal": "95.73"
+    },
     "VLR_TOT_DIF_IBSUF": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSUF": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSUF": "0.09",
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "0.09"
+    },
     "VLR_TOT_DIF_IBSMUN": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSMUN": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSMUN": "0.00",
-    "VLR_TOT_IBS": "0.09",
+    "VLR_TOT_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "0.09"
+    },
     "VLR_TOT_DIF_CBS": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_CBS": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_CBS": "0.86"
+    "VLR_TOT_CBS": {
+      "$numberDecimal": "0.86"
+    }
   }
 }

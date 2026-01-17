@@ -162,7 +162,7 @@
         "COD_CST": "410",
         "COD_CLASSIF_TRIB": "410008",
         "VLR_BC_TRIBUTO": {
-          "$numberDecimal": "21.69"
+          "$numberDecimal": "22.69"
         },
         "TRIBUTO_IBSUF": {
           "PCT_ALIQUOTA_IBSUF": {

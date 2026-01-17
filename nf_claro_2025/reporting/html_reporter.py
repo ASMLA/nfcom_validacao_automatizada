@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict
+from decimal import Decimal, InvalidOperation
 
 from nf_claro_2025.reporting.rule_descriptions import RULE_DESCRIPTIONS
 
@@ -25,49 +26,133 @@ class HTMLReporter:
         caminho_html.parent.mkdir(parents=True, exist_ok=True)
 
         html = self._render_html(invoice, summary, issues)
-
         caminho_html.write_text(html, encoding="utf-8")
 
         # --------------------------------------------------
-        # Geração de PDF (COMPORTAMENTO ORIGINAL)
+        # Geração de PDF (opcional)
         # --------------------------------------------------
         if gerar_pdf:
             try:
                 from weasyprint import HTML
                 caminho_pdf = caminho_html.with_suffix(".pdf")
-                HTML(str(caminho_html)).write_pdf(str(caminho_pdf))
+                HTML(string=html, base_url=str(caminho_html.parent)).write_pdf(str(caminho_pdf))
             except Exception as e:
                 print(f"[WARN] Falha ao gerar PDF: {e}")
 
-    # ==================================================
-    # Renderização HTML
-    # ==================================================
-    def _render_html(self, invoice: dict, summary: dict, issues: List[dict]) -> str:
-        nf = summary.get("nf", "SEM_NF")
-        cliente = summary.get("cliente", "N/D")
-        data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        return html
 
-        itens_html = "\n".join(self._render_item(item) for item in summary["itens"])
-        totais_html = self._render_totais(summary["totais"])
+    def _render_html(self, invoice: dict, summary: dict, issues: List[dict]) -> str:
+        # --------------------------------------------------
+        # Helper: padroniza exibição CT003_* com 3 casas decimais
+        # --------------------------------------------------
+        def _fmt(valor, regra_key):
+            if valor is None:
+                return "None"
+
+            if isinstance(regra_key, str) and regra_key.startswith("CT003"):
+                try:
+                    d = valor if isinstance(valor, Decimal) else Decimal(str(valor))
+                    return str(d.quantize(Decimal("0.000")))
+                except (InvalidOperation, ValueError):
+                    return str(valor)
+
+            return str(valor)
+
+        nf = summary.get("nf")
+        cliente = summary.get("cliente")
+        gerado_em = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+        # --------------------------------------------------
+        # Monta linhas do relatório (itens + totais)
+        # --------------------------------------------------
+        linhas = []
+
+        # Itens
+        for item in summary.get("itens", []):
+            num_item = item.get("num_item")
+            categoria = item.get("categoria")
+            descricao_item = item.get("descricao")
+
+            linhas.append(f"<h3>ITEM {str(num_item).zfill(4)} – {descricao_item}</h3>")
+            linhas.append(f"<p><b>Categoria:</b> {categoria}</p>")
+
+            linhas.append("""
+<table>
+<tr>
+    <th>Cenário</th>
+    <th>Descrição</th>
+    <th>Esperado</th>
+    <th>Encontrado</th>
+    <th>Status</th>
+</tr>
+""")
+
+            for chave, dados in item.items():
+                if chave in ("num_item", "categoria", "descricao"):
+                    continue
+
+                desc = RULE_DESCRIPTIONS.get(chave, "")
+                status = "erro" if dados.get("erro") else "ok"
+                status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
+
+                linhas.append(f"""
+<tr>
+    <td>{chave}</td>
+    <td>{desc}</td>
+    <td>{_fmt(dados.get("esperado"), chave)}</td>
+    <td>{_fmt(dados.get("encontrado"), chave)}</td>
+    <td class="{status}">{status_txt}</td>
+</tr>
+""")
+
+            linhas.append("</table>")
+
+        # Totalizadores
+        linhas_tot = []
+        for chave, dados in summary.get("totais", {}).items():
+            desc = RULE_DESCRIPTIONS.get(chave, "")
+            status = "erro" if dados.get("erro") else "ok"
+            status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
+
+            linhas_tot.append(f"""
+<tr>
+    <td>{chave}</td>
+    <td>{desc}</td>
+    <td>{dados.get("esperado")}</td>
+    <td>{dados.get("encontrado")}</td>
+    <td class="{status}">{status_txt}</td>
+</tr>
+""")
+
+        linhas_tot_html = "\n".join(linhas_tot)
+
+        # --------------------------------------------------
+        # HTML Final
+        # --------------------------------------------------
+        linhas_html = "\n".join(linhas)
 
         return f"""
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Relatório NF {nf}</title>
+<meta charset="utf-8"/>
+<title>Relatório NFCom – Reforma Tributária</title>
 <style>
 body {{
     font-family: Arial, sans-serif;
-    margin: 20px;
+    font-size: 14px;
 }}
-h1, h2, h3 {{
-    color: #2c3e50;
+table {{
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 18px;
 }}
-.item {{
-    border: 1px solid #ccc;
-    padding: 12px;
-    margin-bottom: 15px;
+th, td {{
+    border: 1px solid #ddd;
+    padding: 8px;
+}}
+th {{
+    background: #f2f2f2;
 }}
 .ok {{
     color: green;
@@ -77,128 +162,32 @@ h1, h2, h3 {{
     color: red;
     font-weight: bold;
 }}
-table {{
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 8px;
-}}
-th, td {{
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: left;
-}}
-th {{
-    background-color: #f4f4f4;
-}}
 </style>
 </head>
-
 <body>
 
 <h1>Relatório NFCom – Reforma Tributária</h1>
 
-<p><strong>NF:</strong> {nf}</p>
-<p><strong>Cliente:</strong> {cliente}</p>
-<p><strong>Gerado em:</strong> {data}</p>
-
-<hr>
+<p><b>NF:</b> {nf}</p>
+<p><b>Cliente:</b> {cliente}</p>
+<p><b>Gerado em:</b> {gerado_em}</p>
 
 <h2>Itens</h2>
-
-{itens_html}
-
-<hr>
+{linhas_html}
 
 <h2>Totalizadores</h2>
-
-{totais_html}
+<table>
+<tr>
+    <th>Cenário</th>
+    <th>Descrição</th>
+    <th>Esperado</th>
+    <th>Encontrado</th>
+    <th>Status</th>
+</tr>
+{linhas_tot_html}
+</table>
 
 </body>
 </html>
 """
 
-    # ==================================================
-    # Renderização de ITEM
-    # ==================================================
-    def _render_item(self, item: Dict) -> str:
-        linhas = []
-
-        for chave, dados in item.items():
-            if not chave.startswith("CT"):
-                continue
-
-            desc = RULE_DESCRIPTIONS.get(chave, chave)
-            status = "erro" if dados.get("erro") else "ok"
-            status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
-
-            linhas.append(f"""
-<tr>
-    <td>{chave}</td>
-    <td>{desc}</td>
-    <td>{dados.get("esperado")}</td>
-    <td>{dados.get("encontrado")}</td>
-    <td class="{status}">{status_txt}</td>
-</tr>
-""")
-
-        linhas_html = "\n".join(linhas)
-
-        return f"""
-<div class="item">
-<h3>
-ITEM {item.get("num_item")} – {item.get("descricao")}
-</h3>
-<p><strong>Categoria:</strong> {item.get("categoria")}</p>
-
-<table>
-<tr>
-    <th>Cenário</th>
-    <th>Descrição</th>
-    <th>Esperado</th>
-    <th>Encontrado</th>
-    <th>Status</th>
-</tr>
-
-{linhas_html}
-
-</table>
-</div>
-"""
-
-    # ==================================================
-    # Renderização dos TOTALIZADORES
-    # ==================================================
-    def _render_totais(self, totais: Dict) -> str:
-        linhas = []
-
-        for chave, dados in totais.items():
-            desc = RULE_DESCRIPTIONS.get(chave, chave)
-            status = "erro" if dados.get("erro") else "ok"
-            status_txt = "❌ ERRO" if dados.get("erro") else "✅ OK"
-
-            linhas.append(f"""
-<tr>
-    <td>{chave}</td>
-    <td>{desc}</td>
-    <td>{dados.get("esperado")}</td>
-    <td>{dados.get("encontrado")}</td>
-    <td class="{status}">{status_txt}</td>
-</tr>
-""")
-
-        linhas_html = "\n".join(linhas)
-
-        return f"""
-<table>
-<tr>
-    <th>Cenário</th>
-    <th>Descrição</th>
-    <th>Esperado</th>
-    <th>Encontrado</th>
-    <th>Status</th>
-</tr>
-
-{linhas_html}
-
-</table>
-"""

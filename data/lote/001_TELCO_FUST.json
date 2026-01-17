@@ -186,7 +186,7 @@
       },
       "IMPOSTO_REFORMA": {
         "COD_CST": "000",
-        "COD_CLASSIF_TRIB": "000002",
+        "COD_CLASSIF_TRIB": "000001",
         "VLR_BC_TRIBUTO": {
           "$numberDecimal": "18.82"
         },
