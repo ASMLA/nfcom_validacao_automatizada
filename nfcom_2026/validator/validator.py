@@ -1,20 +1,20 @@
 from decimal import Decimal
-from nf_claro_2025.classification import ClassificadorNF
+from nfcom_2026.classification import ClassificadorNF
 
-from nf_claro_2025.rules.ct003_fixos import CT003_CamposFixos
-from nf_claro_2025.rules.ct004_cst import CT004_CST
-from nf_claro_2025.rules.ct005_cclass import CT005_cClassTrib
-from nf_claro_2025.rules.ct006_bc import CT006_BaseCalculo
-from nf_claro_2025.rules.ct007_ibuf import CT007_IBSUF
-from nf_claro_2025.rules.ct008_ibs import CT008_IBS
-from nf_claro_2025.rules.ct009_ibsmun import CT009_IBSMUN
-from nf_claro_2025.rules.ct010_cbs import CT010_CBS
+from nfcom_2026.rules.ct003_fixos import CT003_CamposFixos
+from nfcom_2026.rules.ct004_cst import CT004_CST
+from nfcom_2026.rules.ct005_cclass import CT005_cClassTrib
+from nfcom_2026.rules.ct006_bc import CT006_BaseCalculo
+from nfcom_2026.rules.ct007_ibuf import CT007_IBSUF
+from nfcom_2026.rules.ct008_ibs import CT008_IBS
+from nfcom_2026.rules.ct009_ibsmun import CT009_IBSMUN
+from nfcom_2026.rules.ct010_cbs import CT010_CBS
 
-from nf_claro_2025.rules.ct011_tot_bc import CT011_TotBC
-from nf_claro_2025.rules.ct012_tot_ibuf import CT012_TotIBSUF
-from nf_claro_2025.rules.ct013_tot_ibsmun import CT013_TotIBSMUN
-from nf_claro_2025.rules.ct014_tot_ibs import CT014_TotIBS
-from nf_claro_2025.rules.ct015_tot_cbs import CT015_TotCBS
+from nfcom_2026.rules.ct011_tot_bc import CT011_TotBC
+from nfcom_2026.rules.ct012_tot_ibuf import CT012_TotIBSUF
+from nfcom_2026.rules.ct013_tot_ibsmun import CT013_TotIBSMUN
+from nfcom_2026.rules.ct014_tot_ibs import CT014_TotIBS
+from nfcom_2026.rules.ct015_tot_cbs import CT015_TotCBS
 
 
 class Validator:

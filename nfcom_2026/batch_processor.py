@@ -2,10 +2,10 @@ from pathlib import Path
 import csv
 from openpyxl import Workbook
 
-from nf_claro_2025.invoice_loader import carregar_invoice
-from nf_claro_2025.validator.validator import Validator
-from nf_claro_2025.reporting.html_reporter import HTMLReporter
-from nf_claro_2025.reporting.audit_reporter import AuditReporter
+from nfcom_2026.invoice_loader import carregar_invoice
+from nfcom_2026.validator.validator import Validator
+from nfcom_2026.reporting.html_reporter import HTMLReporter
+from nfcom_2026.reporting.audit_reporter import AuditReporter
 
 
 class BatchProcessor:
@@ -54,22 +54,24 @@ class BatchProcessor:
         invoice = carregar_invoice(arquivo_json)
         summary, issues = self.validator.validar(invoice)
 
-        # 📂 Pasta = nome do JSON
-        pasta_nf = pasta_saida / arquivo_json.name
+        # ✅ Pasta = nome do JSON SEM extensão (stem)
+        base_name = arquivo_json.stem                 # ex: teste123
+        pasta_nf = pasta_saida / base_name            # ex: reports/lote/teste123
         pasta_nf.mkdir(parents=True, exist_ok=True)
 
+        # ✅ Arquivos = mesmo nome da pasta (base_name)
         if self.html_reporter:
             self.html_reporter.to_html(
                 summary=summary,
                 invoice=invoice,
                 issues=issues,
-                caminho_html=pasta_nf / "relatorio.html",
+                caminho_html=pasta_nf / f"{base_name}.html",
                 gerar_pdf=self.gerar_pdf
             )
 
         if self.audit_reporter:
             texto = self.audit_reporter.to_text(invoice, summary, self.config)
-            (pasta_nf / "auditoria.txt").write_text(texto, encoding="utf-8")
+            (pasta_nf / f"{base_name}.txt").write_text(texto, encoding="utf-8")
 
         num_nf = summary.get("nf", "SEM_NF")
         status = "OK" if not issues else "DIVERGENTE"

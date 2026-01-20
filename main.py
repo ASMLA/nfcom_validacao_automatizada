@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
 
-from nf_claro_2025.batch_processor import BatchProcessor
-from nf_claro_2025.config import carregar_configuracao
+from nfcom_2026.batch_processor import BatchProcessor
+from nfcom_2026.config import carregar_configuracao
 
 
 def main():

@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List, Dict
 from decimal import Decimal, InvalidOperation
 
-from nf_claro_2025.reporting.rule_descriptions import RULE_DESCRIPTIONS
+from nfcom_2026.reporting.rule_descriptions import RULE_DESCRIPTIONS
 
 
 class HTMLReporter:
@@ -138,26 +138,45 @@ class HTMLReporter:
 <meta charset="utf-8"/>
 <title>Relatório NFCom – Reforma Tributária</title>
 <style>
+/* ✅ Evita corte no PDF quando há textos longos em células */
+@page {{
+    size: A4;
+    margin: 12mm;
+}}
+
 body {{
     font-family: Arial, sans-serif;
     font-size: 14px;
 }}
+
 table {{
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 18px;
+
+    /* chave para não estourar largura no PDF */
+    table-layout: fixed;
 }}
+
 th, td {{
     border: 1px solid #ddd;
     padding: 8px;
+
+    /* chave para quebrar textos longos (ex: "Extras: [...]") */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    vertical-align: top;
 }}
+
 th {{
     background: #f2f2f2;
 }}
+
 .ok {{
     color: green;
     font-weight: bold;
 }}
+
 .erro {{
     color: red;
     font-weight: bold;
@@ -190,4 +209,3 @@ th {{
 </body>
 </html>
 """
-
