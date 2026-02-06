@@ -32,7 +32,7 @@ class CT006_BaseCalculo:
 
     • NAO TELCO:
         VLR_BC_TRIBUTO =
-            (VLR_TOT_ITEM * (1 - ISS)) – soma(VLR_TRIBUTO)
+            (VLR_TOT_ITEM * (1 - ISS)) – soma(VLR_TRIBUTO) - soma(VLR_FCP)
 
         ISS:
         - Buscar AliqISS na tabela NTELCO
@@ -99,19 +99,24 @@ class CT006_BaseCalculo:
                 if iss_aliq is None:
                     iss_aliq = Decimal("0.02")
 
-                # -------- Tributos --------
+                # -------- Tributos / FCP --------
                 total_tributos = Decimal("0")
+                total_fcp = Decimal("0")
 
                 for imp in impostos_item:
                     trib = _safe_decimal(imp.get("VLR_TRIBUTO"))
                     if trib is not None:
                         total_tributos += trib
 
+                    fcp = _safe_decimal(imp.get("VLR_FCP"))
+                    if fcp is not None:
+                        total_fcp += fcp
+
                 valor_com_iss = (tot_item * (Decimal("1") - iss_aliq)).quantize(
                     Decimal("0.01")
                 )
 
-                esperado = valor_com_iss - total_tributos
+                esperado = valor_com_iss - total_tributos - total_fcp
 
         # ================== NAO TRIBUTADO =====================
         elif categoria == "NAO TRIBUTADO":
@@ -127,10 +132,10 @@ class CT006_BaseCalculo:
         elif esperado is None or bc_json is None:
             erro = True
         else:
-            erro = esperado != bc_json
+            erro = (esperado != bc_json)
 
         resultado["CT006"] = {
             "esperado": esperado,
             "encontrado": bc_json,
-            "erro": erro,
+            "erro": erro
         }

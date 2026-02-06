@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "69303f67c26dc178a301a0e7"
+    "$oid": "696f91581a8a663433ac29e2"
   },
   "CONTROLE_FATURA": {
     "DAT_USO_FIM": "2025-05-09",
@@ -27,7 +27,9 @@
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
   "COD_UF_EMISSAO": "33",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": {
+    "$numberLong": "1"
+  },
   "NUM_SERIE_NF": "051",
   "ENDERECO": [
     {
@@ -79,7 +81,7 @@
     "IND_IE_CLIENTE": 9,
     "DSC_NOME_CLIENTE": "ROBERTO MEIRELLES DE ARAUJO"
   },
-  "DAT_EMISSAO_FAT_NF": "2025-09-15T12:23:06-03:00",
+  "DAT_EMISSAO_FAT_NF": "2026-01-20T12:23:06-03:00",
   "CAMPOS_ADIC": {
     "NUM_INTERNO_FAT": "0310401742725",
     "COD_ESTAB_EMIT": "2125",
@@ -287,34 +289,44 @@
     }
   ],
   "COD_TIPO_AMBIENTE": 2,
-  "TRANSACTION_ID": "2025021220250765TELCOFUST",
+  "TRANSACTION_ID": "14012026001TELCOFUST",
   "DSC_SGL_UF_EMISSAO": "RJ",
   "NOM_SISTEMA_ORIGEM": "ARBOR_CUST1",
   "COD_FORMA_EMISSAO_NFCOM": 1,
   "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-15T15:27:22.622",
   "TOTAL_REFORMA": {
-    "VLR_TOT_BC_IBS_CBS": "18.82",
+    "VLR_TOT_BC_IBS_CBS": {
+      "$numberDecimal": "18.82"
+    },
     "VLR_TOT_DIF_IBSUF": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSUF": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSUF": "0.02",
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "0.02"
+    },
     "VLR_TOT_DIF_IBSMUN": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSMUN": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSMUN": "0.00",
-    "VLR_TOT_IBS": "0.02",
+    "VLR_TOT_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "0.02"
+    },
     "VLR_TOT_DIF_CBS": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_CBS": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_CBS": "0.17"
+    "VLR_TOT_CBS": {
+      "$numberDecimal": "0.17"
+    }
   }
 }

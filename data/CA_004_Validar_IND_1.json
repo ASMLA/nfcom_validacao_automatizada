@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "696a491096543294c4ad3a1f"
+    "$oid": "696f90b95845e17916a8ebfe"
   },
   "COD_FINALIDADE_NF": "0",
   "DAT_GRAV_IDMC": "2026-01-16T11:17:31",
@@ -18,7 +18,7 @@
   "COD_TIPO_FATURAMENTO_NF": "0",
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 4,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 2,
   "COD_UF_EMISSAO": "33",
   "NUM_SERIE_NF": 65,
   "ENDERECO": [
@@ -55,7 +55,7 @@
     "IND_IE_CLIENTE": 9,
     "DSC_NOME_CLIENTE": "DANIELA DA SILVA PIRES"
   },
-  "DAT_EMISSAO_FAT_NF": "2026-01-14T15:07:57-03:00",
+  "DAT_EMISSAO_FAT_NF": "2026-01-20T15:07:57-03:00",
   "INF_ADICIONAL_FISCO": [
     {
       "DSC_INFO_ADICIONAL_FISCO": "Documento fiscal emitido conforme autorização do art. 1º-G,  Anexo XVI,  Resolução 720/2014 Lei 12.741/12:Tributos Federais (PIS e COFINS - 9.25%)."
@@ -502,6 +502,7 @@
   "DSC_SGL_UF_EMISSAO": "RJ",
   "NOM_SISTEMA_ORIGEM": "NFCOM_PRE_PAGO",
   "COD_FORMA_EMISSAO_NFCOM": 1,
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2026-01-20T11:27:12.097",
   "TOTAL_REFORMA": {
     "VLR_TOT_BC_IBS_CBS": {
       "$numberDecimal": "26.32"
@@ -525,7 +526,7 @@
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_IBS": {
-      "$numberDecimal": "0.04"
+      "$numberDecimal": "0.02"
     },
     "VLR_TOT_DIF_CBS": {
       "$numberDecimal": "0.00"
@@ -536,6 +537,5 @@
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.23"
     }
-  },
-  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2026-01-16T11:22:36.037"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "69389888c26dc178a301a0f3"
+    "$oid": "696f91e63fcc21476d32f56a"
   },
   "CONTROLE_FATURA": {
     "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix0136a66dbf39-5712-4ba8-b506-ce5ac189fa505204000053039865406304.625802BR5909Claro S/A6009Sao Paulo6229052517678000001720617194636616304725B",
@@ -11,7 +11,7 @@
     "DAT_VENCTO_FAT": "2025-02-28"
   },
   "COD_FINALIDADE_NF": "0",
-  "DAT_GRAV_IDMC": "2025-10-17T16:03:36",
+  "DAT_GRAV_IDMC": "2026-01-20T16:03:36",
   "NUM_MODELO_NFCOM": 62,
   "COD_MUN_FG": "4202404",
   "DADOS_ASSINANTE": {
@@ -44,7 +44,7 @@
   ],
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 2,
   "COD_UF_EMISSAO": "42",
   "NUM_SERIE_NF": 71,
   "ENDERECO": [
@@ -85,7 +85,7 @@
     "DSC_NOME_CLIENTE": "FREE ACTION MONTADORA DE BICICLETAS LTDA",
     "DSC_IDENT_OUTROS_CLI": "28643004000107"
   },
-  "DAT_EMISSAO_FAT_NF": "2025-10-17T16:45:10-03:00",
+  "DAT_EMISSAO_FAT_NF": "2026-01-20T16:45:10-03:00",
   "INF_ADICIONAL_FISCO": [
     {
       "DSC_INFO_ADICIONAL_FISCO": "Documento fiscal emitido conforme autorização do art. 22-M, Anexo 7, RICMS/SC"
@@ -107,6 +107,9 @@
         {
           "VLR_ALIQ_TRIBUTO": {
             "$numberDecimal": "1.65"
+          },
+		   "VLR_FCP": {
+            "$numberDecimal": "1.80"
           },
           "IND_GRUPO_TIPO_IMPOSTO": "09",
           "IND_CLASSIF_TRIBUT": "01",
@@ -154,15 +157,15 @@
       "VLR_TOT_ITEM": {
         "$numberDecimal": "25.00"
       },
-      "COD_PRODUTO_SERVICO": "P_PP_M4U271",
+      "COD_PRODUTO_SERVICO": "P_PP_M4U305",
       "QTD_FATURADA": {
         "$numberDecimal": "1"
       },
       "IMPOSTO_REFORMA": {
-        "COD_CST": "410",
-        "COD_CLASSIF_TRIB": "410008",
+        "COD_CST": "000",
+        "COD_CLASSIF_TRIB": "000001",
         "VLR_BC_TRIBUTO": {
-          "$numberDecimal": "22.69"
+          "$numberDecimal": "22.19"
         },
         "TRIBUTO_IBSUF": {
           "PCT_ALIQUOTA_IBSUF": {
@@ -267,11 +270,11 @@
     }
   ],
   "COD_TIPO_AMBIENTE": 2,
-  "TRANSACTION_ID": "202503139995NAOTELCOISS",
+  "TRANSACTION_ID": "14012026NTELCOISS",
   "DSC_SGL_UF_EMISSAO": "SC",
   "NOM_SISTEMA_ORIGEM": "BSIMMOB",
   "COD_FORMA_EMISSAO_NFCOM": 1,
-  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-10-17T16:48:22.699",
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2026-01-20T11:32:09.824",
   "CARIMBO": [
     {
       "COD_CARIMBO": "430",
@@ -315,28 +318,38 @@
     }
   ],
   "TOTAL_REFORMA": {
-    "VLR_TOT_BC_IBS_CBS": "21.69",
+    "VLR_TOT_BC_IBS_CBS": {
+      "$numberDecimal": "22.19"
+    },
     "VLR_TOT_DIF_IBSUF": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSUF": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSUF": "0.02",
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "0.02"
+    },
     "VLR_TOT_DIF_IBSMUN": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSMUN": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSMUN": "0.00",
-    "VLR_TOT_IBS": "0.02",
+    "VLR_TOT_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "0.02"
+    },
     "VLR_TOT_DIF_CBS": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_CBS": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_CBS": "0.20"
+    "VLR_TOT_CBS": {
+      "$numberDecimal": "0.20"
+    }
   }
 }

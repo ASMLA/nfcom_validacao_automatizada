@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "6941cea8e890af3ccf2bb72c"
+    "$oid": "696f92895845e17916a9ccd6"
   },
   "CONTROLE_FATURA": {
     "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix013661b64162-1555-40e9-8f2c-d76f97fd3041520400005303986540813368.015802BR5909Claro S/A6008CAMPINAS62270523005509052000002893899006304951C",
@@ -24,7 +24,7 @@
   "COD_TIPO_FATURAMENTO_NF": "0",
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 1,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": 4,
   "COD_UF_EMISSAO": "35",
   "NUM_SERIE_NF": 91,
   "ENDERECO": [
@@ -81,7 +81,7 @@
     "NUM_CNPJ_CLI": "28189675000140",
     "DSC_NOME_CLIENTE": "SPRINT MIDIA LOCACAO DE ESPACOS PARA PUB"
   },
-  "DAT_EMISSAO_FAT_NF": "2025-12-08T13:54:36-03:00",
+  "DAT_EMISSAO_FAT_NF": "2026-01-20T13:54:36-03:00",
   "INF_ADICIONAL_FISCO": [
     {
       "DSC_INFO_ADICIONAL_FISCO": "Documento fiscal emitido conforme cláusula décima do convênio de ICMS 52/05, alterado pelo convênio icms 116/2012. e base de cálculo do ICMS reduzida, conforme convênio 57/99./Regime Especial - RE: 095166/2020/Nota Fiscal Fatura emitida em via única conforme cláusula primeira, inciso II do Convênio ICMS nº 115/2003"
@@ -91479,34 +91479,44 @@
   "DSC_SGL_EMPRESA": "N01",
   "DAT_GRAV_NF_FATURADOR": "2025-11-03 13:53:51",
   "COD_TIPO_AMBIENTE": 2,
-  "TRANSACTION_ID": "2025120900850ITENS",
+  "TRANSACTION_ID": "14012026850ITENS",
   "DSC_SGL_UF_EMISSAO": "SP",
   "NOM_SISTEMA_ORIGEM": "NETSMS_ISP",
   "COD_FORMA_EMISSAO_NFCOM": 1,
-  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-11-03T13:58:28.026",
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2026-01-20T11:36:42.897",
   "TOTAL_REFORMA": {
-    "VLR_TOT_BC_IBS_CBS": "22444.84",
+    "VLR_TOT_BC_IBS_CBS": {
+      "$numberDecimal": "22444.84"
+    },
     "VLR_TOT_DIF_IBSUF": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSUF": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSUF": "23.06",
+    "VLR_TOT_IBSUF": {
+      "$numberDecimal": "23.06"
+    },
     "VLR_TOT_DIF_IBSMUN": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_IBSMUN": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_IBSMUN": "0.00",
-    "VLR_TOT_IBS": "23.06",
+    "VLR_TOT_IBSMUN": {
+      "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_IBS": {
+      "$numberDecimal": "23.06"
+    },
     "VLR_TOT_DIF_CBS": {
       "$numberDecimal": "0.00"
     },
     "VLR_TOT_DEV_TRIB_CBS": {
       "$numberDecimal": "0.00"
     },
-    "VLR_TOT_CBS": "203.50"
+    "VLR_TOT_CBS": {
+      "$numberDecimal": "203.50"
+    }
   }
 }
