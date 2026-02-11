@@ -20,6 +20,9 @@ class CT014_TotIBS:
     CT014 – Total VLR_TOT_IBS
     Soma CT008.esperado apenas dos itens NÃO reduzidos.
     Se _DEVOLUCAO_ITEM=True => subtrai.
+
+    Robustez:
+      - Se CT008.esperado vier não numérico, ignora (equivalente a 0).
     """
 
     def totalizar(self, invoice, resultados_itens):
@@ -33,7 +36,8 @@ class CT014_TotIBS:
             if not ct:
                 continue
 
-            esp = ct.get("esperado")
+            esp_raw = ct.get("esperado")
+            esp = _safe_decimal(esp_raw)
             if esp is None:
                 continue
 

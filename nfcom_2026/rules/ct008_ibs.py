@@ -2,23 +2,13 @@ from decimal import Decimal, InvalidOperation
 
 
 def _safe_decimal(v):
-    """
-    Converte qualquer formato em Decimal:
-    - {"$numberDecimal": "0.02"}
-    - "0.02"
-    - 0.02
-    - Decimal("0.02")
-    """
     if isinstance(v, Decimal):
         return v
-
-    if isinstance(v, dict):
-        if "$numberDecimal" in v:
-            try:
-                return Decimal(v["$numberDecimal"])
-            except InvalidOperation:
-                return None
-
+    if isinstance(v, dict) and "$numberDecimal" in v:
+        try:
+            return Decimal(v["$numberDecimal"])
+        except InvalidOperation:
+            return None
     try:
         return Decimal(str(v))
     except Exception:
@@ -30,48 +20,47 @@ class CT008_IBS:
     CT008 – VLR_TRIBUTO_IBS
     Regra oficial:
         VLR_TRIBUTO_IBS = VLR_TRIBUTO_IBSUF + VLR_TRIBUTO_IBSMUN
+
+    Regras de validação:
+      - Esperado vem de CT007 + CT009 (primário).
+      - Encontrado vem de TRIBUTO_IBS/VLR_TRIBUTO_IBS (preferencial)
+        ou TRIBUTO_IBS_MUNICIPAL/VLR_TRIBUTO_IBS (fallback legado).
+      - Se IBS total não existir no JSON (cenário normal), é ERRO.
     """
 
     def validar(self, item, resultado, classificacao):
-        imposto_ref = item.get("IMPOSTO_REFORMA", {})
+        imposto_ref = item.get("IMPOSTO_REFORMA", {}) or {}
 
-        # ================
-        # IBSUF
-        # ================
-        trib_uf = imposto_ref.get("TRIBUTO_IBSUF", {})
-        ibsuf_raw = trib_uf.get("VLR_TRIBUTO_IBSUF")
-        ibsuf = _safe_decimal(ibsuf_raw)
+        # Fonte primária: CT007 e CT009 (esperados calculados)
+        ibsuf = _safe_decimal((resultado.get("CT007") or {}).get("esperado"))
+        ibsmun = _safe_decimal((resultado.get("CT009") or {}).get("esperado"))
 
-        # ================
-        # IBSMUN
-        # ================
-        trib_mun = imposto_ref.get("TRIBUTO_IBS_MUNICIPAL", {})
-        ibsmun_raw = trib_mun.get("VLR_TRIBUTO_IBSMUN")
-        ibsmun = _safe_decimal(ibsmun_raw)
+        # Fallback (só se CT007/CT009 não estiverem disponíveis)
+        if ibsuf is None:
+            trib_uf = imposto_ref.get("TRIBUTO_IBSUF", {}) or {}
+            ibsuf = _safe_decimal(trib_uf.get("VLR_TRIBUTO_IBSUF"))
 
-        # ================
-        # IBS (valor do JSON)
-        # ================
-        ibs_json_raw = trib_mun.get("VLR_TRIBUTO_IBS")
-        ibs_json = _safe_decimal(ibs_json_raw)
+        if ibsmun is None:
+            trib_mun = imposto_ref.get("TRIBUTO_IBS_MUNICIPAL", {}) or {}
+            ibsmun = _safe_decimal(trib_mun.get("VLR_TRIBUTO_IBSMUN"))
 
-        if ibsuf is None or ibsmun is None or ibs_json is None:
-            resultado["CT008"] = {
-                "esperado": None,
-                "encontrado": None,
-                "erro": False
-            }
+        # Encontrado: IBS total deve estar em TRIBUTO_IBS/VLR_TRIBUTO_IBS
+        trib_ibs = imposto_ref.get("TRIBUTO_IBS", {}) or {}
+        ibs_json = _safe_decimal(trib_ibs.get("VLR_TRIBUTO_IBS"))
+
+        # Fallback para JSON legado (IBS total dentro do municipal)
+        if ibs_json is None:
+            trib_mun = imposto_ref.get("TRIBUTO_IBS_MUNICIPAL", {}) or {}
+            ibs_json = _safe_decimal(trib_mun.get("VLR_TRIBUTO_IBS"))
+
+        if ibsuf is None or ibsmun is None:
+            resultado["CT008"] = {"esperado": None, "encontrado": ibs_json, "erro": False}
             return
 
-        # ================
-        # Cálculo esperado
-        # ================
-        esperado = (ibsuf + ibsmun).quantize(Decimal("0.02"))
+        esperado = (ibsuf + ibsmun).quantize(Decimal("0.01"))
 
-        erro = (esperado != ibs_json)
+        if ibs_json is None:
+            resultado["CT008"] = {"esperado": esperado, "encontrado": None, "erro": True}
+            return
 
-        resultado["CT008"] = {
-            "esperado": esperado,
-            "encontrado": ibs_json,
-            "erro": erro
-        }
+        resultado["CT008"] = {"esperado": esperado, "encontrado": ibs_json, "erro": (esperado != ibs_json)}

@@ -36,19 +36,20 @@ def _normalize_pct_nf_reforma(v):
 
 
 class CT010_CBS:
-    """
-    CT010 – VLR_TRIBUTO_CBS
-    Regra oficial:
-        VLR_TRIBUTO_CBS = VLR_BC_TRIBUTO × PCT_ALIQUOTA_CBS
-    """
+    """CT010 – VLR_TRIBUTO_CBS."""
 
     def validar(self, item, resultado, classificacao):
-        imposto_ref = item.get("IMPOSTO_REFORMA", {})
+        imposto_ref = item.get("IMPOSTO_REFORMA", {}) or {}
 
-        bc = _safe_decimal(imposto_ref.get("VLR_BC_TRIBUTO"))
-        pct_raw = imposto_ref.get("TRIBUTO_CBS", {}).get("PCT_ALIQUOTA_CBS")
+        # Base primária: CT006 esperado (mantém consistência com o cálculo correto da base)
+        bc_ct006 = _safe_decimal((resultado.get("CT006") or {}).get("esperado"))
+        bc_json = _safe_decimal(imposto_ref.get("VLR_BC_TRIBUTO"))
+        bc = bc_ct006 if bc_ct006 is not None else bc_json
+
+        pct_raw = (imposto_ref.get("TRIBUTO_CBS") or {}).get("PCT_ALIQUOTA_CBS")
         pct = _normalize_pct_nf_reforma(pct_raw)
-        v_json = _safe_decimal(imposto_ref.get("TRIBUTO_CBS", {}).get("VLR_TRIBUTO_CBS"))
+
+        v_json = _safe_decimal((imposto_ref.get("TRIBUTO_CBS") or {}).get("VLR_TRIBUTO_CBS"))
 
         if bc is None or pct is None or v_json is None:
             resultado["CT010"] = {
@@ -59,10 +60,8 @@ class CT010_CBS:
             return
 
         esperado = (bc * pct).quantize(Decimal("0.01"))
-        erro = (esperado != v_json)
-
         resultado["CT010"] = {
             "esperado": esperado,
             "encontrado": v_json,
-            "erro": erro,
+            "erro": (esperado != v_json),
         }

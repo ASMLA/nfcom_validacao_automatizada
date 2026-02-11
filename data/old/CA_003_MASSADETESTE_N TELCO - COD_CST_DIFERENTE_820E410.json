@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "698cbeff0cfe9ba2117d7102"
+    "$oid": "696fadab3fcc21476d3f77e2"
   },
   "CONTROLE_FATURA": {
     "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix0136a66dbf39-5712-4ba8-b506-ce5ac189fa50520400005303986540584.145802BR5909Claro S/A6009Sao Paulo62290525130940000000000250212867863040642",
@@ -78,7 +78,7 @@
     "IND_IE_CLIENTE": 9,
     "DSC_NOME_CLIENTE": "NFCOM 192 212"
   },
-  "DAT_EMISSAO_FAT_NF": "2025-09-15T18:09:56-05:00",
+  "DAT_EMISSAO_FAT_NF": "2026-01-20T18:09:56-05:00",
   "INF_ADICIONAL_FISCO": [
     {
       "DSC_INFO_ADICIONAL_FISCO": "Emissão autorizada pelo Regime Especial - Termo de Acordo nº 53/2022"
@@ -150,7 +150,7 @@
       "VLR_TOT_ITEM": {
         "$numberDecimal": "10.40"
       },
-      "COD_PRODUTO_SERVICO": "P_PP_360",
+      "COD_PRODUTO_SERVICO": "P_PP_DGV070",
       "QTD_FATURADA": {
         "$numberDecimal": "1"
       },
@@ -271,9 +271,6 @@
     },
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.00"
-    },
-    "VLR_TOT_DOCUMENTO_FISCAL": {
-      "$numberDecimal": "84.14"
     }
   }
 }

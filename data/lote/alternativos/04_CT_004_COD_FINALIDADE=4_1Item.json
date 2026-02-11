@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "6968e0573fcc21476dde07ae"
+    "$oid": "698cafcee5b16e69b36dcf10"
   },
   "CONTROLE_FATURA": {
     "DAT_USO_FIM": "2025-04-30",
@@ -10,7 +10,7 @@
     "DAT_USO_INICIO": "2025-03-30",
     "DAT_VENCTO_FAT": "2025-05-15"
   },
-  "COD_FINALIDADE_NF": "0",
+  "COD_FINALIDADE_NF": "4",
   "DAT_GRAV_IDMC": "2025-09-17T10:35:36",
   "NUM_MODELO_NFCOM": 62,
   "COD_MUN_FG": "3549409",
@@ -130,38 +130,8 @@
         "$numberDecimal": "1"
       },
       "IMPOSTO_REFORMA": {
-        "COD_CST": "000",
-        "COD_CLASSIF_TRIB": "000001",
-        "VLR_BC_TRIBUTO": {
-          "$numberDecimal": "0.21"
-        },
-        "TRIBUTO_IBSUF": {
-          "PCT_ALIQUOTA_IBSUF": {
-            "$numberDecimal": "0.10"
-          },
-          "VLR_TRIBUTO_IBSUF": {
-            "$numberDecimal": "0.00"
-          }
-        },
-        "TRIBUTO_IBS_MUNICIPAL": {
-          "PCT_ALIQUOTA_IBSMUN": {
-            "$numberDecimal": "0.00"
-          },
-          "VLR_TRIBUTO_IBS": {
-            "$numberDecimal": "0.00"
-          },
-          "VLR_TRIBUTO_IBSMUN": {
-            "$numberDecimal": "0.00"
-          }
-        },
-        "TRIBUTO_CBS": {
-          "PCT_ALIQUOTA_CBS": {
-            "$numberDecimal": "0.90"
-          },
-          "VLR_TRIBUTO_CBS": {
-            "$numberDecimal": "0.00"
-          }
-        }
+        "COD_CST": "820",
+        "COD_CLASSIF_TRIB": "820008"
       }
     }
   ],
@@ -239,7 +209,7 @@
   "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-17T10:41:32.226",
   "TOTAL_REFORMA": {
     "VLR_TOT_BC_IBS_CBS": {
-      "$numberDecimal": "0.21"
+      "$numberDecimal": "0.00"
     },
     "VLR_TOT_DIF_IBSUF": {
       "$numberDecimal": "0.00"
@@ -270,6 +240,9 @@
     },
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DOCUMENTO_FISCAL": {
+      "$numberDecimal": "0.25"
     }
   }
 }

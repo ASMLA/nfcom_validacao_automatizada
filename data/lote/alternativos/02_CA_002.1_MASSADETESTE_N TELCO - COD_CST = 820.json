@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "698cbeff0cfe9ba2117d7102"
+    "$oid": "698cae700cfe9ba211754555"
   },
   "CONTROLE_FATURA": {
     "DSC_URL_QRCODE_PIX": "00020101021126580014br.gov.bcb.pix0136a66dbf39-5712-4ba8-b506-ce5ac189fa50520400005303986540584.145802BR5909Claro S/A6009Sao Paulo62290525130940000000000250212867863040642",
@@ -150,13 +150,13 @@
       "VLR_TOT_ITEM": {
         "$numberDecimal": "10.40"
       },
-      "COD_PRODUTO_SERVICO": "P_PP_360",
+      "COD_PRODUTO_SERVICO": "P_PP_444",
       "QTD_FATURADA": {
         "$numberDecimal": "1"
       },
       "IMPOSTO_REFORMA": {
-        "COD_CST": "410",
-        "COD_CLASSIF_TRIB": "410999"
+        "COD_CST": "820",
+        "COD_CLASSIF_TRIB": "820000"
       }
     }
   ],

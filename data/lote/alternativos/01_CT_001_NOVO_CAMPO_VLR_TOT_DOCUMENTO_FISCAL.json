@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "6968e0573fcc21476dde07ad"
+    "$oid": "698cae060cfe9ba2117514a5"
   },
   "CONTROLE_FATURA": {
     "DAT_USO_FIM": "2025-05-09",
@@ -327,6 +327,9 @@
     },
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.17"
+    },
+    "VLR_TOT_DOCUMENTO_FISCAL": {
+      "$numberDecimal": "40.50"
     }
   }
 }

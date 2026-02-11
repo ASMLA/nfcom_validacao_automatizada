@@ -17,4 +17,5 @@ RULE_DESCRIPTIONS = {
     "CT013_TotIBSMUN": "Validar total de IBS Municipal",
     "CT014_TotIBS": "Validar total de IBS",
     "CT015_TotCBS": "Validar total de CBS",
+    "CT016_TotDocumentoFiscal": "Validar VLR_TOT_DOCUMENTO_FISCAL = VLR_TOT_NFCOM",
 }

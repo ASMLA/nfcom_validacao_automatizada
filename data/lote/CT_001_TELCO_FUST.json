@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "696f91581a8a663433ac29e2"
+    "$oid": "698cc021e5b16e69b375e5b7"
   },
   "CONTROLE_FATURA": {
     "DAT_USO_FIM": "2025-05-09",
@@ -81,7 +81,7 @@
     "IND_IE_CLIENTE": 9,
     "DSC_NOME_CLIENTE": "ROBERTO MEIRELLES DE ARAUJO"
   },
-  "DAT_EMISSAO_FAT_NF": "2026-01-20T12:23:06-03:00",
+  "DAT_EMISSAO_FAT_NF": "2025-09-15T12:23:06-03:00",
   "CAMPOS_ADIC": {
     "NUM_INTERNO_FAT": "0310401742725",
     "COD_ESTAB_EMIT": "2125",
@@ -327,6 +327,9 @@
     },
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.17"
+    },
+    "VLR_TOT_DOCUMENTO_FISCAL": {
+      "$numberDecimal": "40.50"
     }
   }
 }

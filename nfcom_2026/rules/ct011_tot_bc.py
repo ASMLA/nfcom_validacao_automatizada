@@ -20,6 +20,10 @@ class CT011_TotBC:
     CT011 – Total VLR_TOT_BC_IBS_CBS
     Soma CT006.esperado apenas dos itens NÃO reduzidos.
     Se _DEVOLUCAO_ITEM=True => subtrai.
+
+    Robustez:
+      - Se CT006.esperado vier não numérico (ex.: "Não Deve Existir"), ignora (equivalente a 0).
+      - Evita crash em execuções em lote.
     """
 
     def totalizar(self, invoice, resultados_itens):
@@ -33,8 +37,10 @@ class CT011_TotBC:
             if not ct:
                 continue
 
-            esp = ct.get("esperado")
+            esp_raw = ct.get("esperado")
+            esp = _safe_decimal(esp_raw)
             if esp is None:
+                # esperado não numérico => tratar como 0 (não soma / não subtrai)
                 continue
 
             if r.get("_DEVOLUCAO_ITEM"):

@@ -1,6 +1,6 @@
 {
   "_id": {
-    "$oid": "696f91a03fcc21476d32d4d3"
+    "$oid": "698cc06ce5b16e69b3760ad6"
   },
   "CONTROLE_FATURA": {
     "DAT_USO_FIM": "2025-04-30",
@@ -27,7 +27,9 @@
   "NUM_ALEATORIO_CHAVE": 1111111,
   "NUM_SITE": "0",
   "COD_UF_EMISSAO": "35",
-  "COD_STATUS_PROCESSAMENTO_SOVOS": 2,
+  "COD_STATUS_PROCESSAMENTO_SOVOS": {
+    "$numberLong": "1"
+  },
   "NUM_SERIE_NF": "051",
   "ENDERECO": [
     {
@@ -80,7 +82,7 @@
     "IND_IE_CLIENTE": 9,
     "DSC_NOME_CLIENTE": "EDGARD DE BRITO"
   },
-  "DAT_EMISSAO_FAT_NF": "2026-01-20T07:20:54-03:00",
+  "DAT_EMISSAO_FAT_NF": "2025-09-17T07:20:54-03:00",
   "CAMPOS_ADIC": {
     "NUM_INTERNO_FAT": "0310380644767",
     "COD_ESTAB_EMIT": "1101",
@@ -234,7 +236,7 @@
   "DSC_SGL_UF_EMISSAO": "SP",
   "NOM_SISTEMA_ORIGEM": "ARBOR_CUST1",
   "COD_FORMA_EMISSAO_NFCOM": 1,
-  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2026-01-20T11:30:57.898",
+  "DAT_STATUS_PROCESSAMENTO_SOVOS": "2025-09-17T10:41:32.226",
   "TOTAL_REFORMA": {
     "VLR_TOT_BC_IBS_CBS": {
       "$numberDecimal": "0.21"
@@ -268,6 +270,9 @@
     },
     "VLR_TOT_CBS": {
       "$numberDecimal": "0.00"
+    },
+    "VLR_TOT_DOCUMENTO_FISCAL": {
+      "$numberDecimal": "0.25"
     }
   }
 }
