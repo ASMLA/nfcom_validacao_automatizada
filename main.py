@@ -1,4 +1,5 @@
 import argparse
+import sys
 from pathlib import Path
 
 from nfcom_2026.batch_processor import BatchProcessor
@@ -28,9 +29,17 @@ def main():
     caminho = Path(args.caminho)
 
     if args.multi:
-        processor.processar_lote(caminho)
+        resumo = processor.processar_lote(caminho)
+        # Falha no CI se houver qualquer divergência no lote
+        if resumo.get("Status") != "OK":
+            sys.exit(1)
+        sys.exit(0)
     else:
-        processor.processar_single(caminho)
+        linha = processor.processar_single(caminho)
+        # Falha no CI se o arquivo único for divergente
+        if linha.get("Status") != "OK":
+            sys.exit(1)
+        sys.exit(0)
 
 
 if __name__ == "__main__":

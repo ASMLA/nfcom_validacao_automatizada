@@ -12,6 +12,10 @@ class BatchProcessor:
     """
     Orquestra execução SINGLE e LOTE.
     Organiza saída e mantém feedback no console.
+
+    Requisito CI/CD:
+      - O main.py deve encerrar com exit code 1 se houver qualquer DIVERGENTE.
+      - Este BatchProcessor retorna um resumo/linha com Status para o main decidir.
     """
 
     def __init__(self, config, gerar_html=False, gerar_audit=False, gerar_pdf=False):
@@ -30,7 +34,7 @@ class BatchProcessor:
         pasta_saida = Path("reports/single")
         pasta_saida.mkdir(parents=True, exist_ok=True)
 
-        self._processar_arquivo(arquivo_json, pasta_saida)
+        return self._processar_arquivo(arquivo_json, pasta_saida)
 
     # ==================================================
     def processar_lote(self, pasta_json: Path):
@@ -38,15 +42,30 @@ class BatchProcessor:
         pasta_saida.mkdir(parents=True, exist_ok=True)
 
         linhas_consolidadas = []
+        total_arquivos = 0
+        total_divergentes = 0
+        total_issues = 0
 
         for arquivo in pasta_json.glob("*.json"):
+            total_arquivos += 1
             linha = self._processar_arquivo(arquivo, pasta_saida)
             if linha:
                 linhas_consolidadas.append(linha)
+                total_issues += int(linha.get("Qtd_Issues", 0))
+                if linha.get("Status") != "OK":
+                    total_divergentes += 1
 
         if linhas_consolidadas:
             self._salvar_csv(linhas_consolidadas, pasta_saida / "consolidado.csv")
             self._salvar_xlsx(linhas_consolidadas, pasta_saida / "consolidado.xlsx")
+
+        status_geral = "OK" if total_divergentes == 0 else "DIVERGENTE"
+        return {
+            "Status": status_geral,
+            "Total_Arquivos": total_arquivos,
+            "Total_Divergentes": total_divergentes,
+            "Total_Issues": total_issues,
+        }
 
     # ==================================================
     def _processar_arquivo(self, arquivo_json: Path, pasta_saida: Path):
@@ -55,8 +74,8 @@ class BatchProcessor:
         summary, issues = self.validator.validar(invoice)
 
         # ✅ Pasta = nome do JSON SEM extensão (stem)
-        base_name = arquivo_json.stem                 # ex: teste123
-        pasta_nf = pasta_saida / base_name            # ex: reports/lote/teste123
+        base_name = arquivo_json.stem
+        pasta_nf = pasta_saida / base_name
         pasta_nf.mkdir(parents=True, exist_ok=True)
 
         # ✅ Arquivos = mesmo nome da pasta (base_name)
